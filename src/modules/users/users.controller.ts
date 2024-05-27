@@ -10,18 +10,28 @@ export class UsersController {
   @Post('sign-up')
   async create(@Body() user: any) {
     try {
-      return await this.usersService.create(user);
+      const newUser = await this.usersService.create(user);
+
+      return {
+        message: 'User created successfully',
+        data: newUser,
+      };
     } catch (error) {
-      console.log(error);
+      console.error('Error creating user:', error);
+      throw error;
     }
   }
 
   @Get('profile')
   async getProfile(@Request() req: any) {
     try {
-      return req.user;
+      return {
+        message: 'Profile fetched successfully',
+        data: req.user,
+      };
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching profile:', error);
+      throw error;
     }
   }
 }

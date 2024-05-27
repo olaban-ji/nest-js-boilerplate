@@ -20,7 +20,14 @@ export class AuthController {
   @Post('login')
   async login(@Request() req: any) {
     try {
-      return this.authService.login(req.user);
-    } catch (error) {}
+      const { access_token } = await this.authService.login(req.user);
+      return {
+        message: 'Login Successful',
+        data: { accessToken: access_token },
+      };
+    } catch (error) {
+      console.error('Error logging in:', error);
+      throw error;
+    }
   }
 }
