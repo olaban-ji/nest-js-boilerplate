@@ -10,6 +10,8 @@ This is a boilerplate project for a NestJS application that supports user creati
 - **Response Interceptor**: Standardizes API responses.
 - **Custom HTTP Exception**: Provides detailed error messages for HTTP exceptions.
 - **Initial Migration**: An initial migration has been performed to set up the database schema.
+- **DTO Validation**: Validate inputs for `POST` endpoints.
+- **Swagger Documentaion**: Swagger Documentation setup and can be accessed via this endpoint; `{{BASE_URL}/api/v1/swagger}`
 
 ## Technologies Used
 
