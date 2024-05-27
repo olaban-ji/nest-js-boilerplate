@@ -71,21 +71,18 @@ This is a boilerplate project for a NestJS application that supports user creati
    npx prisma generate
    ```
 
-### Running the Application
+### Running the app
 
-    ```bash
-    # development
+```bash
+# development
+$ yarn run start
 
-    $ yarn run start
+# watch mode
+$ yarn run start:dev
 
-    # watch mode
-
-    $ yarn run start:dev
-
-    # production mode
-
-    $ yarn run start:prod
-    ```
+# production mode
+$ yarn run start:prod
+```
 
 ### API Endpoints
 
