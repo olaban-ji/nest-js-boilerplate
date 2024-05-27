@@ -1,73 +1,131 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS Boilerplate
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a boilerplate project for a NestJS application that supports user creation with email and password, password hashing with bcrypt, JWT authentication for logging in and visiting protected routes, and connections to both MongoDB (using Mongoose) and Postgres (using Prisma).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **User Registration**: Users can sign up with an email and password. Passwords are hashed with bcrypt before being stored in the database.
+- **JWT Authentication**: Users can log in with their email and password to receive a JWT token, which is required to access protected routes.
+- **Database Support**: Connects to MongoDB using Mongoose and Postgres using Prisma. Mongoose is what is fully integrated in the user service. To replace with Prisma, visit the [NestJs Docs](https://docs.nestjs.com/recipes/prisma)
+- **Response Interceptor**: Standardizes API responses.
+- **Custom HTTP Exception**: Provides detailed error messages for HTTP exceptions.
+- **Initial Migration**: An initial migration has been performed to set up the database schema.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Technologies Used
 
-## Installation
+- [NestJS](https://nestjs.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [Prisma](https://www.prisma.io/)
 
-```bash
-$ yarn install
-```
+## Getting Started
 
-## Running the app
+### Prerequisites
 
-```bash
-# development
-$ yarn run start
+- Node.js (>= 12.x)
+- [NestJS](https://docs.nestjs.com/first-steps)
+- Yarn
+- MongoDB
+- PostgreSQL
 
-# watch mode
-$ yarn run start:dev
+### Installation
 
-# production mode
-$ yarn run start:prod
-```
+1. Clone the repository:
 
-## Test
+   ```bash
+   git clone https://github.com/your-repo/nestjs-boilerplate.git
+   cd nestjs-boilerplate
+   ```
 
-```bash
-# unit tests
-$ yarn run test
+2. Install dependencies:
 
-# e2e tests
-$ yarn run test:e2e
+   ```bash
+   yarn install
+   ```
 
-# test coverage
-$ yarn run test:cov
-```
+3. Set up environment variables:
 
-## Support
+   Create a `.env` file in the root directory with the following content:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   ```env
+   # MongoDB
+   DATABASE_URI=mongodb://localhost:27017/nestjs-boilerplate
 
-## Stay in touch
+   # PostgreSQL
+   DATABASE_URL=postgresql://your_username:your_password@localhost:5432/your_database
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+   #bcrypt
+   SALT_ROUNDS=10
 
-## License
+   # JWT
+   JWT_SECRET=your_jwt_secret
+   JWT_EXPIRES_IN=1h
 
-Nest is [MIT licensed](LICENSE).
+   #PostgreSql
+   DATABASE_URL="postgresql://<randomusernam>:<randompassword>@localhost:5432/<databasename>?schema=public
+   ```
+
+4. Initialize Prisma and run the initial migration:
+
+   ```bash
+   npx prisma migrate dev --name init
+   npx prisma generate
+   ```
+
+### Running the Application
+
+    ```bash
+    # development
+
+    $ yarn run start
+
+    # watch mode
+
+    $ yarn run start:dev
+
+    # production mode
+
+    $ yarn run start:prod
+    ```
+
+### API Endpoints
+
+#### User Registration
+
+- **Endpoint**: `POST /users/sign-up`
+- **Description**: Register a new user with email and password.
+- **Request Body**:
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "your_password"
+  }
+  ```
+
+#### User Login
+
+- **Endpoint**: `POST /auth/login`
+- **Description**: Log in a user and receive a JWT token.
+- **Request Body**:
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "your_password"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "accessToken": "your_jwt_token"
+  }
+  ```
+
+#### Get User Profile
+
+- **Endpoint**: `GET /users/profile`
+- **Description**: Get the authenticated user's profile. Requires JWT token.
+- **Headers**:
+  ```json
+  {
+    "Authorization": "Bearer your_jwt_token"
+  }
+  ```
