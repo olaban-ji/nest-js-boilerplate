@@ -4,14 +4,13 @@ import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schema/user.schema';
 import * as bcrypt from 'bcrypt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     MongooseModule.forFeatureAsync([
       {
         name: User.name,
-        imports: [ConfigModule],
         inject: [ConfigService],
         useFactory: (configService: ConfigService) => {
           const schema = UserSchema;
