@@ -28,8 +28,6 @@ import { MorganMiddleware } from './middlewares/morgan.middleware';
   providers: [AppService, Logger],
 })
 export class AppModule implements NestModule {
-  constructor(private readonly configService: ConfigService) {}
-
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(MorganMiddleware).forRoutes('*');
   }

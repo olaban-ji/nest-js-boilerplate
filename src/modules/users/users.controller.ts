@@ -6,13 +6,7 @@ import {
   Post,
   Request,
 } from '@nestjs/common';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
-  ApiBody,
-  ApiBearerAuth,
-} from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { Public } from '../auth/decorators/public.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -67,7 +61,6 @@ export class UsersController {
     status: 500,
     description: 'Internal Server Error',
   })
-  @ApiBearerAuth()
   async getProfile(@Request() req: any) {
     return {
       statusCode: HttpStatus.OK,
