@@ -1,27 +1,58 @@
 import {
   CallHandler,
   ExecutionContext,
+  Inject,
   Injectable,
+  Logger,
+  LoggerService,
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
-export class ResponseInterceptor implements NestInterceptor {
+export class SuccessResponseInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((response) => {
-        const contextResponse = context.switchToHttp().getResponse();
-        const status = contextResponse.statusCode;
-        const message = response.message || 'Success';
-        const data = response.data !== undefined ? response.data : response;
+        const httpResponse = context.switchToHttp().getResponse();
+
+        const statusCode =
+          response?.statusCode && Number.isInteger(response.statusCode)
+            ? response.statusCode
+            : httpResponse.statusCode;
+
+        const message =
+          response?.message && typeof response.message === 'string'
+            ? response.message
+            : 'Operation successful';
+
+        const responseData =
+          response?.data !== undefined ? response.data : response;
 
         return {
-          status,
+          statusCode,
+          success: true,
           message,
-          data,
+          data: responseData,
         };
+      }),
+    );
+  }
+}
+
+@Injectable()
+export class RequestBodyAndResponseInterceptor implements NestInterceptor {
+  constructor(@Inject(Logger) private readonly loggerService: LoggerService) {}
+
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const request = context.switchToHttp().getRequest();
+    const method = request.method;
+    const url = request.url;
+
+    return next.handle().pipe(
+      tap((response) => {
+        this.loggerService.debug(`[${method}] ${url} - Response:`, response);
       }),
     );
   }
