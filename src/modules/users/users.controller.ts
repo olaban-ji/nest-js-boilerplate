@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  Request,
+} from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
@@ -37,16 +44,12 @@ export class UsersController {
   })
   @ApiBody({ type: CreateUserDto })
   async create(@Body() user: CreateUserDto) {
-    try {
-      const newUser = await this.usersService.create(user);
-      return {
-        message: 'User created successfully',
-        data: newUser,
-      };
-    } catch (error) {
-      console.error('Error creating user:', error);
-      throw error;
-    }
+    const newUser = await this.usersService.create(user);
+    return {
+      statusCode: HttpStatus.CREATED,
+      message: 'User created successfully',
+      data: newUser,
+    };
   }
 
   @Get('profile')
@@ -66,14 +69,10 @@ export class UsersController {
   })
   @ApiBearerAuth()
   async getProfile(@Request() req: any) {
-    try {
-      return {
-        message: 'Profile fetched successfully',
-        data: req.user,
-      };
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-      throw error;
-    }
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Profile fetched successfully',
+      data: req.user,
+    };
   }
 }
