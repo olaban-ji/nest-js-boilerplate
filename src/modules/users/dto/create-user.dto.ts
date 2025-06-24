@@ -15,6 +15,6 @@ export class CreateUserDto {
     example: 'strongPassword123',
   })
   @IsNotEmpty()
-  @MinLength(4)
+  @MinLength(10)
   password: string;
 }

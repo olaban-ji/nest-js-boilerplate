@@ -34,15 +34,12 @@ export class AuthController {
   })
   @ApiBody({ type: LoginDto })
   async login(@Request() req: any) {
-    try {
-      const { access_token } = await this.authService.login(req.user);
-      return {
-        message: 'Login Successful',
-        data: { accessToken: access_token },
-      };
-    } catch (error) {
-      console.error('Error logging in:', error);
-      throw error;
-    }
+    const { access_token, refresh_token } = await this.authService.login(
+      req.user,
+    );
+    return {
+      message: 'Login Successful',
+      data: { accessToken: access_token, refreshToken: refresh_token },
+    };
   }
 }

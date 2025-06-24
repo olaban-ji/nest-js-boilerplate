@@ -62,10 +62,13 @@ export class UsersController {
     description: 'Internal Server Error',
   })
   async getProfile(@Request() req: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...safeUser } = req.user.toObject?.() || req.user;
+
     return {
       statusCode: HttpStatus.OK,
       message: 'Profile fetched successfully',
-      data: req.user,
+      data: { user: safeUser },
     };
   }
 }
