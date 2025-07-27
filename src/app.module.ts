@@ -22,6 +22,7 @@ import { UsersSubscriber } from './modules/users/subscribers/user.subscriber';
 import { BullModule } from '@nestjs/bullmq';
 import { BullBoardModule } from '@bull-board/nestjs';
 import { ExpressAdapter } from '@bull-board/express';
+import { CreateUserCommand } from './commands/create-user.command';
 
 @Module({
   imports: [
@@ -71,7 +72,7 @@ import { ExpressAdapter } from '@bull-board/express';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, Logger, SchemaService],
+  providers: [AppService, Logger, SchemaService, CreateUserCommand],
 })
 export class AppModule implements NestModule {
   constructor(private readonly configService: ConfigService) {}

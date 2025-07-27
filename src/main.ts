@@ -12,8 +12,11 @@ import winston from 'winston';
 import moment from 'moment-timezone';
 import { APP_NAME } from './common/constants';
 import util from 'util';
+import otelSDK, { prometheusExporter } from './tracing';
 
 async function bootstrap() {
+  otelSDK.start();
+
   const instance = winston.createLogger({
     level: 'silly',
     transports: [
@@ -45,6 +48,14 @@ async function bootstrap() {
       instance,
     }),
   });
+
+  app
+    .getHttpAdapter()
+    .getInstance()
+    .get(
+      '/metrics',
+      prometheusExporter.getMetricsRequestHandler.bind(prometheusExporter),
+    );
 
   app.use(helmet());
   app.enableCors();

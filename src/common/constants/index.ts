@@ -11,3 +11,6 @@ export const PAYMENT_PROVIDER = 'PAYMENT_PROVIDER';
 export const TEMPLATE_QUEUE_NAME = 'template-queue-name';
 
 export const PASSWORD_RESET_EMAIL_QUEUE_NAME = 'password-reset-email-queue';
+
+export const PASSWORD_CHARACTER_SET =
+  '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?';
