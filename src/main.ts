@@ -1,9 +1,6 @@
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import {
-  RequestBodyAndResponseInterceptor,
-  SuccessResponseInterceptor,
-} from './common/interceptors/response.interceptor';
+import { SuccessResponseInterceptor } from './common/interceptors/response.interceptor';
 import { CatchEverythingFilter } from './common/filters/exception.filter';
 import { setupSwagger } from './config/swagger.config';
 import { ValidationPipe } from '@nestjs/common';
@@ -11,10 +8,10 @@ import { WinstonModule } from 'nest-winston';
 import helmet from 'helmet';
 import { RoleGuard } from './common/guards';
 import { ConfigService } from '@nestjs/config';
-import * as winston from 'winston';
-import * as moment from 'moment-timezone';
-import { IANATimeZoneDatabaseEnum } from './common/enums';
+import winston from 'winston';
+import moment from 'moment-timezone';
 import { APP_NAME } from './common/constants';
+import util from 'util';
 
 async function bootstrap() {
   const instance = winston.createLogger({
@@ -29,13 +26,13 @@ async function bootstrap() {
             fillExcept: ['timestamp', 'level', 'message', 'label'],
           }),
           winston.format.printf(({ timestamp, level, message, metadata }) => {
-            const localTimestamp = moment(timestamp)
-              .tz(IANATimeZoneDatabaseEnum.LAGOS)
-              .format();
+            const utcTimeStamp = moment(timestamp).utc().format();
+
             const metaString = Object.keys(metadata).length
-              ? `\n${JSON.stringify(metadata, null, 2)}`
+              ? `\n${util.inspect(metadata, { colors: true, depth: 5 })}`
               : '';
-            return `${localTimestamp} [${level}]: ${message} ${metaString}`;
+
+            return `${utcTimeStamp} [${level}]: ${message} ${metaString}`;
           }),
         ),
       }),
@@ -43,6 +40,7 @@ async function bootstrap() {
   });
 
   const app = await NestFactory.create(AppModule, {
+    bodyParser: false,
     logger: WinstonModule.createLogger({
       instance,
     }),
@@ -60,13 +58,6 @@ async function bootstrap() {
   app.useGlobalGuards(new RoleGuard(new Reflector()));
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new SuccessResponseInterceptor());
-  app.useGlobalInterceptors(
-    new RequestBodyAndResponseInterceptor(
-      WinstonModule.createLogger({
-        instance,
-      }),
-    ),
-  );
   app.useGlobalFilters(
     new CatchEverythingFilter(
       httpAdapterHost,

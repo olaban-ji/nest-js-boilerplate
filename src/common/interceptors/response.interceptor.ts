@@ -1,3 +1,4 @@
+import { STRIPE_WEBHOOK_CONTEXT_TYPE } from '@golevelup/nestjs-stripe';
 import {
   CallHandler,
   ExecutionContext,
@@ -13,6 +14,13 @@ import { map, tap } from 'rxjs/operators';
 @Injectable()
 export class SuccessResponseInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const contextType = context.getType<
+      'http' | typeof STRIPE_WEBHOOK_CONTEXT_TYPE
+    >();
+    if (contextType === STRIPE_WEBHOOK_CONTEXT_TYPE) {
+      return next.handle();
+    }
+
     return next.handle().pipe(
       map((response) => {
         const httpResponse = context.switchToHttp().getResponse();
@@ -28,7 +36,7 @@ export class SuccessResponseInterceptor implements NestInterceptor {
             : 'Operation successful';
 
         const responseData =
-          response?.data !== undefined ? response.data : response;
+          response?.data !== undefined ? response?.data : response?.message;
 
         return {
           statusCode,
@@ -52,7 +60,7 @@ export class RequestBodyAndResponseInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap((response) => {
-        this.loggerService.debug(`[${method}] ${url} - Response:`, response);
+        this.loggerService.log(`[${method}] ${url} - Response:`, response);
       }),
     );
   }

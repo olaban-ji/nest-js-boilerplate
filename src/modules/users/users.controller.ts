@@ -2,18 +2,16 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   HttpStatus,
   Post,
   Request,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { Public } from '../auth/decorators/public.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
-import {
-  CreateUserResponseDto,
-  GetProfileResponseDto,
-} from './dto/responses.dto';
+import { ApiResponse } from 'src/common/interfaces/api-response.interface';
 
 @ApiTags('users')
 @Controller('users')
@@ -23,21 +21,8 @@ export class UsersController {
   @Public()
   @Post('sign-up')
   @ApiOperation({ summary: 'Sign up a new user' })
-  @ApiResponse({
-    status: 201,
-    description: 'User created successfully',
-    type: CreateUserResponseDto,
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Bad Request',
-  })
-  @ApiResponse({
-    status: 409,
-    description: 'User already exists',
-  })
   @ApiBody({ type: CreateUserDto })
-  async create(@Body() user: CreateUserDto) {
+  async create(@Body() user: CreateUserDto): Promise<ApiResponse<any>> {
     const newUser = await this.usersService.create(user);
     return {
       statusCode: HttpStatus.CREATED,
@@ -47,23 +32,11 @@ export class UsersController {
   }
 
   @Get('profile')
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get user profile' })
-  @ApiResponse({
-    status: 200,
-    description: 'Profile fetched successfully',
-    type: GetProfileResponseDto,
-  })
-  @ApiResponse({
-    status: 401,
-    description: 'Unauthorized',
-  })
-  @ApiResponse({
-    status: 500,
-    description: 'Internal Server Error',
-  })
-  async getProfile(@Request() req: any) {
+  async getProfile(@Request() req: any): Promise<ApiResponse<any>> {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...safeUser } = req.user.toObject?.() || req.user;
+    const { password, ...safeUser } = req.user;
 
     return {
       statusCode: HttpStatus.OK,
