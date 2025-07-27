@@ -4,6 +4,8 @@ import {
   W3CTraceContextPropagator,
   W3CBaggagePropagator,
 } from '@opentelemetry/core';
+import { JaegerPropagator } from '@opentelemetry/propagator-jaeger';
+import { B3Propagator } from '@opentelemetry/propagator-b3';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 import { NodeSDK } from '@opentelemetry/sdk-node';
@@ -20,7 +22,12 @@ const otelSDK = new NodeSDK({
   metricReader: prometheusExporter,
   contextManager: new AsyncLocalStorageContextManager(),
   textMapPropagator: new CompositePropagator({
-    propagators: [new W3CTraceContextPropagator(), new W3CBaggagePropagator()],
+    propagators: [
+      new JaegerPropagator(),
+      new W3CTraceContextPropagator(),
+      new W3CBaggagePropagator(),
+      new B3Propagator(),
+    ],
   }),
   instrumentations: [getNodeAutoInstrumentations()],
 });
