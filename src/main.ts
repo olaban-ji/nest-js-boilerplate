@@ -59,7 +59,7 @@ async function bootstrap() {
 
   app.use(helmet());
   app.enableCors();
-  app.setGlobalPrefix('v1');
+  app.setGlobalPrefix('v1', { exclude: ['/'] });
 
   const httpAdapterHost = app.get(HttpAdapterHost);
   const configService = app.get(ConfigService);

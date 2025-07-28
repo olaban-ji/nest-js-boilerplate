@@ -29,7 +29,7 @@ export class PasswordResetEmailConsumer extends WorkerHost {
       data?.email,
       EmailSubjectEnum.PASSWORD_RESET,
       EmailTemplateEnum.PASSWORD_RESET,
-      { url: data?.url, firstName: data?.firstName },
+      { resetUrl: data?.resetUrl, firstName: data?.firstName },
     );
 
     this.loggerService.log(

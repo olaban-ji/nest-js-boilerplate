@@ -1,0 +1,21 @@
+name: Enforce Production Merge Source
+
+on:
+  pull_request:
+    branches:
+      - production
+
+jobs:
+  check-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR source branch
+        run: |
+          echo "Pull Request source branch: ${{ github.event.pull_request.head.ref }}"
+          echo "Pull Request target branch: ${{ github.event.pull_request.base.ref }}"
+
+          if [ "${{ github.event.pull_request.head.ref }}" != "dev" ]; then
+            echo "::error ::PR to production must come from dev branch only."
+            exit 1
+          fi
+          echo "PR source branch is dev - allowed."

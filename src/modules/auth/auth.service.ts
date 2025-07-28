@@ -146,12 +146,12 @@ export class AuthService {
       sub: user.id,
     });
 
-    const url = `${this.passwordResetUrl}?reset-token=${token}`;
+    const resetUrl = `${this.passwordResetUrl}?reset-token=${token}`;
 
     await this.passwordResetEmailQueue.add('send-password-reset-email', {
       email: user.email,
       firstName: user.firstName,
-      url,
+      resetUrl,
     });
 
     await this.usersService.update({
