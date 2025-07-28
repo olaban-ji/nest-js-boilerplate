@@ -3,7 +3,8 @@ name: Generate & Deploy Documentation
 on:
   push:
     branches:
-      - dev
+      #replace with any other branch than main or production linked branch in real world use cases
+      - main
 
 jobs:
   build-docs:

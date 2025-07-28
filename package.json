@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "postinstall": "husky",
     "cli": "node dist/main.cli.js",
-    "create:user": "npm run cli -- create:user"
+    "create:user": "npm run cli -- create:user",
+    "docs:build": "compodoc -p tsconfig.json -d docs --theme material -n \"nest-js-boilerplate-docs\""
   },
   "dependencies": {
     "@aws-sdk/credential-providers": "^3.848.0",
@@ -29,6 +30,7 @@
     "@bull-board/api": "^6.12.0",
     "@bull-board/express": "^6.12.0",
     "@bull-board/nestjs": "^6.12.0",
+    "@compodoc/compodoc": "^1.1.26",
     "@golevelup/nestjs-stripe": "^0.9.3",
     "@golevelup/nestjs-webhooks": "^0.2.21",
     "@liaoliaots/nestjs-redis": "^10.0.0",
