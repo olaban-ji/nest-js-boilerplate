@@ -15,7 +15,7 @@ import { Queue } from 'bullmq';
 import { AuthTokens } from './types/auth-tokens';
 import { AppRedisService } from 'src/services/redis/redis.service';
 import moment from 'moment';
-import { parseTimeString } from 'src/common/utils/time.utils';
+import { parseTimeString } from 'src/common/utils/time.util';
 
 @Injectable()
 export class AuthService {
@@ -51,11 +51,10 @@ export class AuthService {
     email: string,
     pass: string,
   ): Promise<Omit<User, 'password'> | null> {
-    const user = await this.usersService.findOne({ email });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
+    const user = await this.usersService.findOne(
+      { email },
+      { failHandler: () => new NotFoundException('User not found') },
+    );
 
     if (user && (await bcrypt.compare(pass, user.password))) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -106,11 +105,12 @@ export class AuthService {
       throw new UnauthorizedException('Invalid refresh token');
     }
 
-    const user = await this.usersService.findOne({
-      id: payload.sub,
-    });
-
-    if (!user) throw new NotFoundException('User not found');
+    const user = await this.usersService.findOne(
+      {
+        id: payload.sub,
+      },
+      { failHandler: () => new NotFoundException('User not found') },
+    );
 
     const newPayload = {
       sub: user.id,
@@ -135,11 +135,10 @@ export class AuthService {
   }
 
   async forgotPassword(email: string): Promise<void> {
-    const user = await this.usersService.findOne({ email });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
+    const user = await this.usersService.findOne(
+      { email },
+      { failHandler: () => new NotFoundException('User not found') },
+    );
 
     const token = this.jwtService.sign({
       email: user.email,
@@ -170,13 +169,12 @@ export class AuthService {
     }
 
     const payload = this.jwtService.verify(resetToken);
-    const user = await this.usersService.findOne({
-      email: payload.email,
-    });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
+    const user = await this.usersService.findOne(
+      {
+        email: payload.email,
+      },
+      { failHandler: () => new NotFoundException('User not found') },
+    );
 
     if (!user.passwordResetRequested) {
       throw new NotFoundException('Password reset not requested');

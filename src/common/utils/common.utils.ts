@@ -1,7 +1,7 @@
 import { customAlphabet } from 'nanoid';
 import { lowercase } from 'nanoid-dictionary';
 
-export default function generateSlug(text: string, limit: number): string {
+export function generateSlug(text: string, limit: number): string {
   const baseSlug = text
     .toLowerCase()
     .trim()

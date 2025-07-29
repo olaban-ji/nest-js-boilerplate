@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -9,17 +10,14 @@ import {
   EntityRepository,
   FilterQuery,
   FindOneOrFailOptions,
-  NotFoundError,
 } from '@mikro-orm/core';
 import { User } from './entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 import { ChangePasswordDto } from './dto/change-password.dto';
-import bcrypt from 'bcrypt';
 import { AppRedisService } from 'src/services/redis/redis.service';
 
 @Injectable()
 export class UsersService {
-  private readonly saltRounds: number;
   private readonly userIdCacheKey: string;
   private readonly userEmailCacheKey: string;
 
@@ -29,26 +27,24 @@ export class UsersService {
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
   ) {
-    this.saltRounds = this.configService.getOrThrow<number>('auth.saltRounds');
     this.userIdCacheKey = `users:id`;
     this.userEmailCacheKey = `users:email`;
   }
 
   async create(userData: any): Promise<Omit<User, 'password'>> {
-    try {
-      await this.userRepository.findOneOrFail({
-        email: userData.email,
-      });
-    } catch (error) {
-      if (error instanceof NotFoundError) {
-      }
+    const user = await this.userRepository.findOne({
+      email: userData.email,
+    });
+
+    if (user) {
+      throw new ConflictException('User already exists in the system.');
     }
 
-    const user = this.userRepository.create(userData);
-    await this.userRepository.getEntityManager().persistAndFlush(user);
+    const newUser = this.userRepository.create(userData);
+    await this.userRepository.getEntityManager().persistAndFlush(newUser);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...result } = user;
+    const { password, ...result } = newUser;
     return result;
   }
 
@@ -61,10 +57,10 @@ export class UsersService {
     if (typeof query === 'string') {
       cacheKey = `${this.userIdCacheKey}:${query}`;
     } else if (typeof query === 'object' && query !== null) {
-      if ('id' in query && query.id) {
-        cacheKey = `${this.userIdCacheKey}:${query.id}`;
-      } else if ('email' in query && query.email) {
-        cacheKey = `${this.userEmailCacheKey}:${query.email}`;
+      if ('id' in query && query?.id) {
+        cacheKey = `${this.userIdCacheKey}:${query?.id}`;
+      } else if ('email' in query && query?.email) {
+        cacheKey = `${this.userEmailCacheKey}:${query?.email}`;
       }
     }
 
@@ -78,21 +74,21 @@ export class UsersService {
       }
     }
 
-    const user = await this.userRepository.findOne(query, options);
+    const user = await this.userRepository.findOneOrFail(query, options);
 
     if (cacheKey) {
       const serializable = { ...user };
 
       await Promise.all([
         this.appRedisService.set(
-          `${this.userIdCacheKey}:${user.id}`,
+          `${this.userIdCacheKey}:${user?.id}`,
           JSON.stringify(serializable),
-          24 * 60 * 60,
+          5 * 60,
         ),
         this.appRedisService.set(
-          `${this.userEmailCacheKey}:${user.email}`,
+          `${this.userEmailCacheKey}:${user?.email}`,
           JSON.stringify(serializable),
-          24 * 60 * 60,
+          5 * 60,
         ),
       ]);
     }
@@ -106,21 +102,21 @@ export class UsersService {
       { failHandler: () => new NotFoundException('User not found') },
     );
 
-    Object.assign(user, data);
+    this.userRepository.assign(user, data);
 
-    await this.userRepository.getEntityManager().flush();
+    await this.userRepository.getEntityManager().persistAndFlush(user);
 
     if (user) {
       await Promise.all([
         this.appRedisService.set(
           `${this.userIdCacheKey}:${user?.id}`,
           JSON.stringify(user),
-          24 * 60 * 60,
+          5 * 60,
         ),
         this.appRedisService.set(
           `${this.userEmailCacheKey}:${user?.email}`,
           JSON.stringify(user),
-          24 * 60 * 60,
+          5 * 60,
         ),
       ]);
     }
@@ -140,12 +136,9 @@ export class UsersService {
       throw new BadRequestException('Passwords do not match');
     }
 
-    const salt = await bcrypt.genSalt(this.saltRounds);
-    const hashedPassword = await bcrypt.hash(newPassword, salt);
-
     const updatedUser = await this.update({
       id: userId,
-      password: hashedPassword,
+      password: newPassword,
       changePassword: false,
     });
 

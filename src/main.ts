@@ -6,7 +6,7 @@ import { setupSwagger } from './config/swagger.config';
 import { ValidationPipe } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
 import helmet from 'helmet';
-import { RoleGuard } from './common/guards';
+import { RoleGuard } from './common/guards/role.guard';
 import { ConfigService } from '@nestjs/config';
 import winston from 'winston';
 import moment from 'moment-timezone';

@@ -1,6 +1,6 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from 'src/modules/users/users.service';
 import { ConfigService } from '@nestjs/config';
 
@@ -32,9 +32,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
    *  and `refresh()` methods of the `AuthService` class.
    */
   async validate(req: Request, payload: any) {
-    const user = await this.usersService.findOne({
-      id: payload.sub,
-    });
+    const user = await this.usersService.findOne(
+      {
+        id: payload.sub,
+      },
+      { failHandler: () => new NotFoundException('User not found') },
+    );
     return user;
   }
 }

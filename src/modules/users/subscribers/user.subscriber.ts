@@ -2,8 +2,8 @@ import { EventSubscriber, EntityName, EventArgs } from '@mikro-orm/core';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { User } from '../entities/user.entity';
-import { UserRoleEnum } from 'src/common/enums';
 import * as bcrypt from 'bcrypt';
+import { normalizeUserFields } from 'src/common/utils/user.util';
 
 @Injectable()
 export class UsersSubscriber implements EventSubscriber<User> {
@@ -32,38 +32,7 @@ export class UsersSubscriber implements EventSubscriber<User> {
   }
 
   private normalizeFields(user: User) {
-    if (user.email) {
-      user.email = user.email.toLowerCase().trim();
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(user.email)) {
-        throw new Error('Invalid email format');
-      }
-    }
-
-    const trimFields: (keyof User)[] = [
-      'avatar',
-      'firstName',
-      'lastName',
-      'address',
-      'city',
-      'postalCode',
-      'state',
-      'country',
-      'countryCode',
-      'phoneNumber',
-    ];
-
-    trimFields.forEach((field) => {
-      const value = user[field];
-      if (value && typeof value === 'string') {
-        (user[field] as any) = value.trim();
-      }
-    });
-
-    if (user.role) {
-      user.role = user.role.toLowerCase() as UserRoleEnum;
-    }
+    normalizeUserFields(user);
   }
 
   private isPasswordModified(user: User): boolean {

@@ -1,8 +1,9 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 
-export const parseTimeString = (
-  timeString: string,
-): { value: string; unit: moment.DurationInputArg2 } => {
+export function parseTimeString(timeString: string): {
+  value: string;
+  unit: moment.DurationInputArg2;
+} {
   const parsed = timeString.match(/^(\d+)([smhdwMy])$/);
 
   if (!parsed) {
@@ -15,4 +16,4 @@ export const parseTimeString = (
   const unit = parsed[2] as moment.DurationInputArg2;
 
   return { value, unit };
-};
+}

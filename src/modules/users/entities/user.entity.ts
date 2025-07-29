@@ -1,22 +1,18 @@
 import {
   Entity,
-  PrimaryKey,
   Property,
   Enum,
   BeforeCreate,
   BeforeUpdate,
   Index,
 } from '@mikro-orm/core';
+import { BaseEntity } from 'src/common/entities/base.entitiy';
 import { UserRoleEnum } from 'src/common/enums';
-import { v7 as uuidv7 } from 'uuid';
+import { normalizeUserFields } from 'src/common/utils/user.util';
 
 @Entity({ tableName: 'users' })
 @Index({ properties: ['email'] })
-@Index({ properties: ['deletedAt'] })
-export class User {
-  @PrimaryKey({ type: 'uuid' })
-  id: string = uuidv7();
-
+export class User extends BaseEntity {
   @Property({
     unique: true,
     type: 'varchar',
@@ -139,66 +135,9 @@ export class User {
   })
   lastLoggedIn?: Date;
 
-  @Property({
-    type: 'timestamptz',
-    nullable: true,
-    comment: 'Soft delete timestamp',
-  })
-  deletedAt?: Date;
-
-  @Property({
-    type: 'timestamptz',
-    defaultRaw: 'CURRENT_TIMESTAMP',
-    comment: 'Record creation timestamp',
-  })
-  createdAt: Date = new Date();
-
-  @Property({
-    type: 'timestamptz',
-    defaultRaw: 'CURRENT_TIMESTAMP',
-    onUpdate: () => new Date(),
-    comment: 'Record last update timestamp',
-  })
-  updatedAt: Date = new Date();
-
   @BeforeCreate()
   @BeforeUpdate()
   private normalizeFields() {
-    if (this.email) {
-      this.email = this.email.toLowerCase().trim();
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(this.email)) {
-        throw new Error('Invalid email format');
-      }
-    }
-
-    const trimFields = [
-      'avatar',
-      'firstName',
-      'lastName',
-      'address',
-      'city',
-      'postalCode',
-      'state',
-      'country',
-      'countryCode',
-      'phoneNumber',
-    ];
-
-    trimFields.forEach((field) => {
-      if (
-        this[field as keyof this] &&
-        typeof this[field as keyof this] === 'string'
-      ) {
-        (this[field as keyof this] as any) = (
-          this[field as keyof this] as string
-        ).trim();
-      }
-    });
-
-    if (this.role) {
-      this.role = this.role.toLowerCase() as UserRoleEnum;
-    }
+    normalizeUserFields(this);
   }
 }
