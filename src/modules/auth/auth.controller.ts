@@ -15,7 +15,7 @@ import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token-dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
-import { ApiResponse } from 'src/common/interfaces/api-response.interface';
+import { ApiResponse } from '@common/interfaces/api-response.interface';
 
 @ApiTags('auth')
 @Controller('auth')

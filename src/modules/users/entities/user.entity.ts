@@ -6,9 +6,9 @@ import {
   BeforeUpdate,
   Index,
 } from '@mikro-orm/core';
-import { BaseEntity } from 'src/common/entities/base.entitiy';
-import { UserRoleEnum } from 'src/common/enums';
-import { normalizeUserFields } from 'src/common/utils/user.util';
+import { BaseEntity } from '@common/entities/base.entity';
+import { UserRoleEnum } from '@common/enums';
+import { normalizeUserFields } from '@common/utils/user.util';
 
 @Entity({ tableName: 'users' })
 @Index({ properties: ['email'] })

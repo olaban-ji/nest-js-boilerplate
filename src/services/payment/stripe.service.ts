@@ -5,7 +5,7 @@ import {
 import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Stripe from 'stripe';
-import { TEMPLATE_QUEUE_NAME } from 'src/common/constants';
+import { TEMPLATE_QUEUE_NAME } from '@common/constants';
 import { IPaymentService } from './interfaces/payment.interface';
 import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';

@@ -9,7 +9,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRoleEnum } from 'src/common/enums';
+import { UserRoleEnum } from '@common/enums';
 import { Transform } from 'class-transformer';
 
 export class CreateUserDto {

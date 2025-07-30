@@ -10,10 +10,10 @@ import { JsonWebTokenError, JwtService, NotBeforeError } from '@nestjs/jwt';
 import { User } from '../users/entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 import { InjectQueue } from '@nestjs/bullmq';
-import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from 'src/common/constants';
+import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from '@common/constants';
 import { Queue } from 'bullmq';
 import { AuthTokens } from './types/auth-tokens';
-import { AppRedisService } from 'src/services/redis/redis.service';
+import { AppRedisService } from '@services/redis/redis.service';
 import ms, { StringValue } from 'ms';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { Logger, Module } from '@nestjs/common';
 import { EmailService } from './email.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
-import { EMAIL_FROM_NAME } from 'src/common/constants';
+import { EMAIL_FROM_NAME } from '@common/constants';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { join } from 'path';
 

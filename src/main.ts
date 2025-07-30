@@ -49,6 +49,8 @@ async function bootstrap() {
     }),
   });
 
+  app.enableShutdownHooks();
+
   app
     .getHttpAdapter()
     .getInstance()

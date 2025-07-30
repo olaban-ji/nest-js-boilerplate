@@ -1,8 +1,8 @@
 import { Module, DynamicModule, Logger, LoggerService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CloudinaryService } from './cloudinary.service';
-import { STORAGE_PROVIDER } from 'src/common/constants';
-import { StorageDriverEnum } from 'src/common/enums';
+import { STORAGE_PROVIDER } from '@common/constants';
+import { StorageDriverEnum } from '@common/enums';
 import { S3Service } from './s3.service';
 import { getS3ConnectionToken, S3, S3Module } from 'nestjs-s3';
 

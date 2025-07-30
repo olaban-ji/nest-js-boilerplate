@@ -1,10 +1,7 @@
 import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { IStrorageService } from './interfaces/storage.interface';
-import {
-  HttpRequestMethodEnum,
-  UploadFileCategoryEnum,
-} from 'src/common/enums';
+import { HttpRequestMethodEnum, UploadFileCategoryEnum } from '@common/enums';
 import { MemoryStoredFile } from 'nestjs-form-data';
 import { InjectS3, S3 } from 'nestjs-s3';
 import { customAlphabet } from 'nanoid';

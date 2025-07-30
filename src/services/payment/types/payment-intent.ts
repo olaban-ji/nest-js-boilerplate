@@ -1,4 +1,4 @@
-import { StripeCurrencyEnum } from 'src/common/enums';
+import { StripeCurrencyEnum } from '@common/enums';
 
 export type PaymentIntent = {
   amount: number;

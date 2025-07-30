@@ -1,5 +1,5 @@
-import { UserRoleEnum } from 'src/common/enums';
-import { User } from 'src/modules/users/entities/user.entity';
+import { UserRoleEnum } from '@common/enums';
+import { User } from '@modules/users/entities/user.entity';
 
 export function normalizeUserFields(user: User): void {
   if (user.email) {

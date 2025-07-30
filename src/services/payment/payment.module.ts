@@ -1,10 +1,10 @@
 import { STRIPE_CLIENT_TOKEN, StripeModule } from '@golevelup/nestjs-stripe';
 import { DynamicModule, Logger, LoggerService, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { TEMPLATE_QUEUE_NAME, PAYMENT_PROVIDER } from 'src/common/constants';
-import { PaymentDriverEnum } from 'src/common/enums';
+import { TEMPLATE_QUEUE_NAME, PAYMENT_PROVIDER } from '@common/constants';
+import { PaymentDriverEnum } from '@common/enums';
 import Stripe from 'stripe';
-import { Public } from 'src/modules/auth/decorators/public.decorator';
+import { Public } from '@modules/auth/decorators/public.decorator';
 import { StripeService } from './stripe.service';
 import { BullModule, getQueueToken } from '@nestjs/bullmq';
 import { BullBoardModule } from '@bull-board/nestjs';

@@ -12,7 +12,7 @@ import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { Public } from '../auth/decorators/public.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
-import { ApiResponse } from 'src/common/interfaces/api-response.interface';
+import { ApiResponse } from '@common/interfaces/api-response.interface';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 

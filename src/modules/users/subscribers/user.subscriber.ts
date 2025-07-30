@@ -1,13 +1,23 @@
-import { EventSubscriber, EntityName, EventArgs } from '@mikro-orm/core';
+import {
+  EventSubscriber,
+  EntityName,
+  EventArgs,
+  EntityManager,
+} from '@mikro-orm/core';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { User } from '../entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { normalizeUserFields } from 'src/common/utils/user.util';
+import { normalizeUserFields } from '@common/utils/user.util';
 
 @Injectable()
 export class UsersSubscriber implements EventSubscriber<User> {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    em: EntityManager,
+    private readonly configService: ConfigService,
+  ) {
+    em.getEventManager().registerSubscriber(this);
+  }
 
   getSubscribedEntities(): EntityName<User>[] {
     return [User];

@@ -4,7 +4,7 @@ import { UsersController } from './users.controller';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { User } from './entities/user.entity';
 import { UsersSubscriber } from './subscribers/user.subscriber';
-import { AppRedisModule } from 'src/services/redis/redis.module';
+import { AppRedisModule } from '@services/redis/redis.module';
 
 @Module({
   imports: [MikroOrmModule.forFeature([User]), AppRedisModule],

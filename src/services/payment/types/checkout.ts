@@ -1,4 +1,4 @@
-import { StripeCurrencyEnum } from 'src/common/enums';
+import { StripeCurrencyEnum } from '@common/enums';
 import Stripe from 'stripe';
 
 export type Checkout = {

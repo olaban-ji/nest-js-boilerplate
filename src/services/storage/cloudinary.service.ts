@@ -7,7 +7,7 @@ import {
 } from 'cloudinary';
 import toStream = require('buffer-to-stream');
 import { IStrorageService } from './interfaces/storage.interface';
-import { UploadFileCategoryEnum } from 'src/common/enums';
+import { UploadFileCategoryEnum } from '@common/enums';
 import { MemoryStoredFile } from 'nestjs-form-data';
 
 @Injectable()

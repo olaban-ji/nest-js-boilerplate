@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Command, CommandRunner } from 'nest-commander';
-import { UsersService } from 'src/modules/users/users.service';
+import { UsersService } from '@modules/users/users.service';
 import { Option } from 'nest-commander';
 import chalk from 'chalk';
-import { UserRoleEnum } from 'src/common/enums';
+import { UserRoleEnum } from '@common/enums';
 import { customAlphabet } from 'nanoid';
-import { PASSWORD_CHARACTER_SET } from 'src/common/constants';
+import { PASSWORD_CHARACTER_SET } from '@common/constants';
 import { EntityManager } from '@mikro-orm/core';
 
 @Command({ name: 'create:user', description: 'Create a new user' })
@@ -23,8 +23,6 @@ export class CreateUserCommand extends CommandRunner {
   async run(inputs: string[], options: Record<string, any>): Promise<void> {
     const { email, firstName, lastName, role } = options;
 
-    const forkedEm = this.em.fork();
-
     try {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
@@ -32,7 +30,7 @@ export class CreateUserCommand extends CommandRunner {
         throw new Error('Invalid email format');
       }
 
-      await forkedEm.transactional(async () => {
+      await this.em.transactional(async () => {
         await this.usersService.create({
           email,
           firstName,

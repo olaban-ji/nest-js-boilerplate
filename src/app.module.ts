@@ -13,17 +13,15 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { MorganMiddleware } from './common/middlewares/morgan.middleware';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { PostgreSqlDriver } from '@mikro-orm/postgresql';
-import { PRODUCTION } from './common/constants';
 import { SchemaService } from './schema.service';
 import basicAuth from 'express-basic-auth';
 import { applyRawBodyOnlyTo } from '@golevelup/nestjs-webhooks';
-import { UsersSubscriber } from './modules/users/subscribers/user.subscriber';
 import { BullModule } from '@nestjs/bullmq';
 import { BullBoardModule } from '@bull-board/nestjs';
 import { ExpressAdapter } from '@bull-board/express';
 import { CreateUserCommand } from './commands/create-user.command';
 import { RequestContextMiddleware } from './common/middlewares/request-context.middleware';
+import mikroOrmConfig from '@config/mikro-orm.config';
 
 @Module({
   imports: [
@@ -33,29 +31,8 @@ import { RequestContextMiddleware } from './common/middlewares/request-context.m
       cache: true,
     }),
     MikroOrmModule.forRootAsync({
-      useFactory: async (configService: ConfigService) => {
-        return {
-          driver: PostgreSqlDriver,
-          dbName: configService.getOrThrow<string>('db.name'),
-          host: configService.getOrThrow<string>('db.host'),
-          port: configService.getOrThrow<number>('db.port'),
-          user: configService.getOrThrow<string>('db.username'),
-          password: configService.getOrThrow<string>('db.password'),
-          autoLoadEntities: true,
-          ensureDatabase:
-            configService.getOrThrow<string>('nodeEnv') !== PRODUCTION,
-          pool: {
-            min: configService.getOrThrow<number>('db.pool.min'),
-            max: configService.getOrThrow<number>('db.pool.max'),
-          },
-          forceUtcTimezone: true,
-          validate: true,
-          strict: true,
-          debug: configService.getOrThrow<boolean>('db.logging'),
-          subscribers: [new UsersSubscriber(configService)],
-        };
-      },
-      inject: [ConfigService],
+      imports: [ConfigModule],
+      useFactory: () => mikroOrmConfig,
     }),
     UsersModule,
     AuthModule,

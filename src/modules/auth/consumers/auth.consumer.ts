@@ -1,10 +1,10 @@
-import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from 'src/common/constants';
+import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from '@common/constants';
 import os from 'os';
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
-import { EmailService } from 'src/services/email/email.service';
+import { EmailService } from '@services/email/email.service';
 import { Inject, Logger, LoggerService } from '@nestjs/common';
-import { EmailSubjectEnum, EmailTemplateEnum } from 'src/common/enums';
+import { EmailSubjectEnum, EmailTemplateEnum } from '@common/enums';
 
 @Processor(PASSWORD_RESET_EMAIL_QUEUE_NAME, {
   concurrency: os.cpus().length,

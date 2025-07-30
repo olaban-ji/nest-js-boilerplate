@@ -12,9 +12,8 @@ import {
   FindOneOrFailOptions,
 } from '@mikro-orm/core';
 import { User } from './entities/user.entity';
-import { ConfigService } from '@nestjs/config';
 import { ChangePasswordDto } from './dto/change-password.dto';
-import { AppRedisService } from 'src/services/redis/redis.service';
+import { AppRedisService } from '@services/redis/redis.service';
 
 @Injectable()
 export class UsersService {
@@ -23,7 +22,6 @@ export class UsersService {
 
   constructor(
     private readonly appRedisService: AppRedisService,
-    private readonly configService: ConfigService,
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
   ) {

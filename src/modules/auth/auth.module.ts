@@ -9,10 +9,10 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';
-import { AppRedisModule } from 'src/services/redis/redis.module';
+import { AppRedisModule } from '@services/redis/redis.module';
 import { BullModule } from '@nestjs/bullmq';
 import { BullBoardModule } from '@bull-board/nestjs';
-import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from 'src/common/constants';
+import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from '@common/constants';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 
 @Module({
