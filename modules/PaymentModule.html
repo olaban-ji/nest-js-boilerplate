@@ -177,10 +177,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { STRIPE_CLIENT_TOKEN, StripeModule } from &#x27;@golevelup/nestjs-stripe&#x27;;
 import { DynamicModule, Logger, LoggerService, Module } from &#x27;@nestjs/common&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
-import { TEMPLATE_QUEUE_NAME, PAYMENT_PROVIDER } from &#x27;src/common/constants&#x27;;
-import { PaymentDriverEnum } from &#x27;src/common/enums&#x27;;
+import { TEMPLATE_QUEUE_NAME, PAYMENT_PROVIDER } from &#x27;@common/constants&#x27;;
+import { PaymentDriverEnum } from &#x27;@common/enums&#x27;;
 import Stripe from &#x27;stripe&#x27;;
-import { Public } from &#x27;src/modules/auth/decorators/public.decorator&#x27;;
+import { Public } from &#x27;@modules/auth/decorators/public.decorator&#x27;;
 import { StripeService } from &#x27;./stripe.service&#x27;;
 import { BullModule, getQueueToken } from &#x27;@nestjs/bullmq&#x27;;
 import { BullBoardModule } from &#x27;@bull-board/nestjs&#x27;;

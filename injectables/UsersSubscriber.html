@@ -178,12 +178,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
+<code>constructor(em: EntityManager, configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -200,6 +200,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>em</td>
+                                                  
+                                                        <td>
+                                                                    <code>EntityManager</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>configService</td>
                                                   
@@ -248,8 +260,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -317,8 +329,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -384,8 +396,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -424,8 +436,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -493,8 +505,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -562,8 +574,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -615,16 +627,26 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventSubscriber, EntityName, EventArgs } from &#x27;@mikro-orm/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  EventSubscriber,
+  EntityName,
+  EventArgs,
+  EntityManager,
+} from &#x27;@mikro-orm/core&#x27;;
 import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
 import { User } from &#x27;../entities/user.entity&#x27;;
 import * as bcrypt from &#x27;bcrypt&#x27;;
-import { normalizeUserFields } from &#x27;src/common/utils/user.util&#x27;;
+import { normalizeUserFields } from &#x27;@common/utils/user.util&#x27;;
 
 @Injectable()
 export class UsersSubscriber implements EventSubscriber&lt;User&gt; {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    em: EntityManager,
+    private readonly configService: ConfigService,
+  ) {
+    em.getEventManager().registerSubscriber(this);
+  }
 
   getSubscribedEntities(): EntityName&lt;User&gt;[] {
     return [User];

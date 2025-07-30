@@ -884,10 +884,10 @@ import { JsonWebTokenError, JwtService, NotBeforeError } from &#x27;@nestjs/jwt&
 import { User } from &#x27;../users/entities/user.entity&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
 import { InjectQueue } from &#x27;@nestjs/bullmq&#x27;;
-import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from &#x27;src/common/constants&#x27;;
+import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from &#x27;@common/constants&#x27;;
 import { Queue } from &#x27;bullmq&#x27;;
 import { AuthTokens } from &#x27;./types/auth-tokens&#x27;;
-import { AppRedisService } from &#x27;src/services/redis/redis.service&#x27;;
+import { AppRedisService } from &#x27;@services/redis/redis.service&#x27;;
 import ms, { StringValue } from &#x27;ms&#x27;;
 
 @Injectable()

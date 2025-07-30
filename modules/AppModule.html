@@ -303,8 +303,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app.module.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app.module.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -370,17 +370,15 @@ import { UsersModule } from &#x27;./modules/users/users.module&#x27;;
 import { AuthModule } from &#x27;./modules/auth/auth.module&#x27;;
 import { MorganMiddleware } from &#x27;./common/middlewares/morgan.middleware&#x27;;
 import { MikroOrmModule } from &#x27;@mikro-orm/nestjs&#x27;;
-import { PostgreSqlDriver } from &#x27;@mikro-orm/postgresql&#x27;;
-import { PRODUCTION } from &#x27;./common/constants&#x27;;
 import { SchemaService } from &#x27;./schema.service&#x27;;
 import basicAuth from &#x27;express-basic-auth&#x27;;
 import { applyRawBodyOnlyTo } from &#x27;@golevelup/nestjs-webhooks&#x27;;
-import { UsersSubscriber } from &#x27;./modules/users/subscribers/user.subscriber&#x27;;
 import { BullModule } from &#x27;@nestjs/bullmq&#x27;;
 import { BullBoardModule } from &#x27;@bull-board/nestjs&#x27;;
 import { ExpressAdapter } from &#x27;@bull-board/express&#x27;;
 import { CreateUserCommand } from &#x27;./commands/create-user.command&#x27;;
 import { RequestContextMiddleware } from &#x27;./common/middlewares/request-context.middleware&#x27;;
+import mikroOrmConfig from &#x27;@config/mikro-orm.config&#x27;;
 
 @Module({
   imports: [
@@ -390,29 +388,8 @@ import { RequestContextMiddleware } from &#x27;./common/middlewares/request-cont
       cache: true,
     }),
     MikroOrmModule.forRootAsync({
-      useFactory: async (configService: ConfigService) &#x3D;&gt; {
-        return {
-          driver: PostgreSqlDriver,
-          dbName: configService.getOrThrow&lt;string&gt;(&#x27;db.name&#x27;),
-          host: configService.getOrThrow&lt;string&gt;(&#x27;db.host&#x27;),
-          port: configService.getOrThrow&lt;number&gt;(&#x27;db.port&#x27;),
-          user: configService.getOrThrow&lt;string&gt;(&#x27;db.username&#x27;),
-          password: configService.getOrThrow&lt;string&gt;(&#x27;db.password&#x27;),
-          autoLoadEntities: true,
-          ensureDatabase:
-            configService.getOrThrow&lt;string&gt;(&#x27;nodeEnv&#x27;) !&#x3D;&#x3D; PRODUCTION,
-          pool: {
-            min: configService.getOrThrow&lt;number&gt;(&#x27;db.pool.min&#x27;),
-            max: configService.getOrThrow&lt;number&gt;(&#x27;db.pool.max&#x27;),
-          },
-          forceUtcTimezone: true,
-          validate: true,
-          strict: true,
-          debug: configService.getOrThrow&lt;boolean&gt;(&#x27;db.logging&#x27;),
-          subscribers: [new UsersSubscriber(configService)],
-        };
-      },
-      inject: [ConfigService],
+      imports: [ConfigModule],
+      useFactory: () &#x3D;&gt; mikroOrmConfig,
     }),
     UsersModule,
     AuthModule,

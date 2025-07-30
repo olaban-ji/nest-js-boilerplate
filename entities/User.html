@@ -836,9 +836,9 @@
   BeforeUpdate,
   Index,
 } from &#x27;@mikro-orm/core&#x27;;
-import { BaseEntity } from &#x27;src/common/entities/base.entitiy&#x27;;
-import { UserRoleEnum } from &#x27;src/common/enums&#x27;;
-import { normalizeUserFields } from &#x27;src/common/utils/user.util&#x27;;
+import { BaseEntity } from &#x27;@common/entities/base.entity&#x27;;
+import { UserRoleEnum } from &#x27;@common/enums&#x27;;
+import { normalizeUserFields } from &#x27;@common/utils/user.util&#x27;;
 
 @Entity({ tableName: &#x27;users&#x27; })
 @Index({ properties: [&#x27;email&#x27;] })

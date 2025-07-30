@@ -96,7 +96,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >BaseEntity</li>
+  <li class="breadcrumb-item" >Migration20250730220636</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -120,11 +120,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/common/entities/base.entity.ts</code>
+            <code>src/migrations/Migration20250730220636.ts</code>
         </p>
 
 
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code>Migration</code>
+            </p>
 
 
 
@@ -132,9 +138,10 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
+                        <h6><b>Methods</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -142,20 +149,8 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#createdAt" >createdAt</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Optional</span>
-                                <a href="#deletedAt" >deletedAt</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#id" >id</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#updatedAt" >updatedAt</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -165,180 +160,58 @@
 
 
 
-
         </tbody>
     </table>
 </section>
 
 
-            <section data-compodoc="block-properties">
+
+            <section data-compodoc="block-methods">
     
-    <h3 id="inputs">
-        Properties
+    <h3 id="methods">
+        Methods
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createdAt"></a>
+                    <a name="up"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>createdAt</b></span>
-                        <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Async</span>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Date()</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Property({type: &#x27;timestamptz&#x27;, defaultRaw: &#x27;CURRENT_TIMESTAMP&#x27;, comment: &#x27;Record creation timestamp&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/common/entities/base.entity.ts:22</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deletedAt"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier">Optional</span>
-                        <span ><b>deletedAt</b></span>
-                        <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
-                    </span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>up()</code>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Property({type: &#x27;timestamptz&#x27;, nullable: true, comment: &#x27;Soft delete timestamp&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
+
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/common/entities/base.entity.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="4"
+                                    class="link-to-prism">src/migrations/Migration20250730220636.ts:4</a></div>
                         </td>
                     </tr>
 
 
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="id"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>id</b></span>
-                        <a href="#id"><span class="icon ion-ios-link"></span></a>
-                    </span>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>uuidv7()</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @PrimaryKey({type: &#x27;uuid&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/common/entities/base.entity.ts:8</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updatedAt"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>updatedAt</b></span>
-                        <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Date()</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Property({type: &#x27;timestamptz&#x27;, defaultRaw: &#x27;CURRENT_TIMESTAMP&#x27;, onUpdate: () &#x3D;&gt; , comment: &#x27;Record last update timestamp&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/common/entities/base.entity.ts:30</a></div>
-                        </td>
-                    </tr>
-
-
         </tbody>
     </table>
 </section>
-
-
 
 
 
@@ -348,36 +221,56 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Filter, Index, PrimaryKey, Property } from &#x27;@mikro-orm/core&#x27;;
-import { v7 as uuidv7 } from &#x27;uuid&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Migration } from &#x27;@mikro-orm/migrations&#x27;;
 
-@Index({ properties: [&#x27;deletedAt&#x27;] })
-@Filter({ name: &#x27;softDelete&#x27;, cond: { deletedAt: null }, default: true })
-export abstract class BaseEntity {
-  @PrimaryKey({ type: &#x27;uuid&#x27; })
-  id: string &#x3D; uuidv7();
-
-  @Property({
-    type: &#x27;timestamptz&#x27;,
-    nullable: true,
-    comment: &#x27;Soft delete timestamp&#x27;,
-  })
-  deletedAt?: Date;
-
-  @Property({
-    type: &#x27;timestamptz&#x27;,
-    defaultRaw: &#x27;CURRENT_TIMESTAMP&#x27;,
-    comment: &#x27;Record creation timestamp&#x27;,
-  })
-  createdAt: Date &#x3D; new Date();
-
-  @Property({
-    type: &#x27;timestamptz&#x27;,
-    defaultRaw: &#x27;CURRENT_TIMESTAMP&#x27;,
-    onUpdate: () &#x3D;&gt; new Date(),
-    comment: &#x27;Record last update timestamp&#x27;,
-  })
-  updatedAt: Date &#x3D; new Date();
+export class Migration20250730220636 extends Migration {
+  override async up(): Promise&lt;void&gt; {
+    this.addSql(
+      &#x60;create table &quot;users&quot; (&quot;id&quot; uuid not null, &quot;deleted_at&quot; timestamptz null, &quot;created_at&quot; timestamptz not null default CURRENT_TIMESTAMP, &quot;updated_at&quot; timestamptz not null default CURRENT_TIMESTAMP, &quot;email&quot; varchar(255) not null, &quot;avatar&quot; varchar(500) null, &quot;first_name&quot; varchar(100) not null, &quot;last_name&quot; varchar(100) not null, &quot;address&quot; text null, &quot;city&quot; varchar(100) null, &quot;postal_code&quot; varchar(20) null, &quot;state&quot; varchar(100) null, &quot;country&quot; varchar(100) null, &quot;country_code&quot; varchar(3) null, &quot;phone_number&quot; varchar(20) null, &quot;password&quot; varchar(255) not null, &quot;role&quot; text check (&quot;role&quot; in (&#x27;admin&#x27;, &#x27;user&#x27;)) not null default &#x27;user&#x27;, &quot;change_password&quot; boolean not null default false, &quot;password_reset_requested&quot; boolean not null default false, &quot;last_logged_in&quot; timestamptz null, constraint &quot;users_pkey&quot; primary key (&quot;id&quot;));&#x60;,
+    );
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;deleted_at&quot; is &#x27;Soft delete timestamp&#x27;;&#x60;,
+    );
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;created_at&quot; is &#x27;Record creation timestamp&#x27;;&#x60;,
+    );
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;updated_at&quot; is &#x27;Record last update timestamp&#x27;;&#x60;,
+    );
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;email&quot; is &#x27;User email address&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;avatar&quot; is &#x27;Avatar URL or path&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;first_name&quot; is &#x27;User first name&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;last_name&quot; is &#x27;User last name&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;address&quot; is &#x27;Street address&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;city&quot; is &#x27;City name&#x27;;&#x60;);
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;postal_code&quot; is &#x27;Postal/ZIP code&#x27;;&#x60;,
+    );
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;state&quot; is &#x27;State/Province&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;country&quot; is &#x27;Country name&#x27;;&#x60;);
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;country_code&quot; is &#x27;ISO country code&#x27;;&#x60;,
+    );
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;phone_number&quot; is &#x27;Phone number&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;password&quot; is &#x27;Hashed password&#x27;;&#x60;);
+    this.addSql(&#x60;comment on column &quot;users&quot;.&quot;role&quot; is &#x27;User role&#x27;;&#x60;);
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;change_password&quot; is &#x27;Whether user needs to change password&#x27;;&#x60;,
+    );
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;password_reset_requested&quot; is &#x27;Whether password reset was requested&#x27;;&#x60;,
+    );
+    this.addSql(
+      &#x60;comment on column &quot;users&quot;.&quot;last_logged_in&quot; is &#x27;Last login timestamp&#x27;;&#x60;,
+    );
+    this.addSql(
+      &#x60;alter table &quot;users&quot; add constraint &quot;users_email_unique&quot; unique (&quot;email&quot;);&#x60;,
+    );
+    this.addSql(
+      &#x60;create index &quot;users_deleted_at_index&quot; on &quot;users&quot; (&quot;deleted_at&quot;);&#x60;,
+    );
+    this.addSql(&#x60;create index &quot;users_email_index&quot; on &quot;users&quot; (&quot;email&quot;);&#x60;);
+  }
 }
 </code></pre>
     </div>
@@ -417,7 +310,7 @@ export abstract class BaseEntity {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'BaseEntity.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Migration20250730220636.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
