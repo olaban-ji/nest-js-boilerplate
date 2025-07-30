@@ -36,7 +36,8 @@ export class AuthService {
   ) {
     this.passwordResetUrl =
       this.configService.getOrThrow<string>('url.passwordReset');
-    this.jwtExpiresIn = this.configService.getOrThrow('auth.jwt.expiresIn');
+    this.jwtExpiresIn =
+      this.configService.getOrThrow<string>('auth.jwt.expiresIn');
     this.jwtNotBefore = `${parseInt(this.jwtExpiresIn) - 1}m`;
     this.jwtRefreshExpriresIn = this.configService.getOrThrow<string>(
       'auth.jwt.refreshExpiresIn',
