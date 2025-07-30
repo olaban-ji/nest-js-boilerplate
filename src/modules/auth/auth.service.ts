@@ -14,16 +14,15 @@ import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from 'src/common/constants';
 import { Queue } from 'bullmq';
 import { AuthTokens } from './types/auth-tokens';
 import { AppRedisService } from 'src/services/redis/redis.service';
-import moment from 'moment';
-import { parseTimeString } from 'src/common/utils/time.util';
+import ms, { StringValue } from 'ms';
 
 @Injectable()
 export class AuthService {
   private readonly passwordResetUrl: string;
-  private readonly jwtExpiresIn: string;
-  private readonly jwtNotBefore: string;
+  private readonly jwtExpiresIn: StringValue;
+  private readonly jwtNotBefore: StringValue;
   private readonly jwtRefreshSecret: string;
-  private readonly jwtRefreshExpriresIn: string;
+  private readonly jwtRefreshExpriresIn: StringValue;
   private readonly saltRounds: number;
 
   constructor(
@@ -37,9 +36,9 @@ export class AuthService {
     this.passwordResetUrl =
       this.configService.getOrThrow<string>('url.passwordReset');
     this.jwtExpiresIn =
-      this.configService.getOrThrow<string>('auth.jwt.expiresIn');
-    this.jwtNotBefore = `${parseInt(this.jwtExpiresIn) - 1}m`;
-    this.jwtRefreshExpriresIn = this.configService.getOrThrow<string>(
+      this.configService.getOrThrow<StringValue>('auth.jwt.expiresIn');
+    this.jwtNotBefore = `${(ms(this.jwtExpiresIn) - ms('1m')) / ms('1m')}m`;
+    this.jwtRefreshExpriresIn = this.configService.getOrThrow<StringValue>(
       'auth.jwt.refreshExpiresIn',
     );
     this.jwtRefreshSecret = this.configService.getOrThrow<string>(
@@ -117,12 +116,10 @@ export class AuthService {
       sub: user.id,
     };
 
-    const { value, unit } = parseTimeString(this.jwtRefreshExpriresIn);
-
     await this.appRedisService.set(
       cacheKey,
       '1',
-      moment.duration(value, unit).asSeconds() + 60,
+      (ms(this.jwtRefreshExpriresIn) + ms('1m')) / ms('1s'),
     );
 
     return {
