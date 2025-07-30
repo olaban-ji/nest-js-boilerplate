@@ -92,7 +92,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >JwtStrategy</li>
+  <li class="breadcrumb-item" >RequestContextMiddleware</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,17 +116,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/auth/strategies/jwt.strategy.ts</code>
+            <code>src/common/middlewares/request-context.middleware.ts</code>
         </p>
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                        <code>PassportStrategy(Strategy)</code>
-            </p>
 
 
             <section data-compodoc="block-index">
@@ -143,8 +137,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#validate" >validate</a>
+                                <a href="#use" >use</a>
                             </li>
                         </ul>
                     </td>
@@ -164,12 +157,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService, usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>)</code>
+<code>constructor(orm: MikroORM)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/auth/strategies/jwt.strategy.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/common/middlewares/request-context.middleware.ts:6</a></div>
                             </td>
                         </tr>
 
@@ -187,22 +180,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>orm</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>usersService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                                    <code>MikroORM</code>
                                                         </td>
                                                   
                                                     <td>
@@ -228,46 +209,30 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="validate"></a>
+                    <a name="use"></a>
                     <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>validate</b></span>
-                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>use</b></span>
+                        <a href="#use"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>validate(req: Request, payload: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>use(req: Request, res: Response, next: NextFunction)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/modules/auth/strategies/jwt.strategy.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="9"
+                                    class="link-to-prism">src/common/middlewares/request-context.middleware.ts:9</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>NOTE: <code>req</code> is available here and can be used to extract the raw JWT.</p>
-<p>This can support enforcing a single active session per user:</p>
-<ul>
-<li>Compare the JWT in the request with the token stored in the user document.</li>
-<li>Reject the request if they don&#39;t match (i.e., user is logged in elsewhere).</li>
-</ul>
-<p>Implementation details:</p>
-<ul>
-<li>Store or update the token in the user document during login and token refresh.</li>
-<li>This logic should be implemented in the
-<code>login()</code> (needs to be implemented as login currently stops at the controller level and no it&#39;s not wrong)
- and <code>refresh()</code> methods of the <code>AuthService</code> class.</li>
-</ul>
-</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -294,9 +259,21 @@
 
                                         </tr>
                                         <tr>
-                                                <td>payload</td>
+                                                <td>res</td>
                                             <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        <code>Response</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>next</td>
+                                            <td>
+                                                        <code>NextFunction</code>
                                             </td>
 
                                             <td>
@@ -309,7 +286,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
@@ -325,47 +302,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ExtractJwt, Strategy } from &#x27;passport-jwt&#x27;;
-import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
-import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
-import { UsersService } from &#x27;src/modules/users/users.service&#x27;;
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NestMiddleware } from &#x27;@nestjs/common&#x27;;
+import { Request, Response, NextFunction } from &#x27;express&#x27;;
+import { MikroORM, RequestContext } from &#x27;@mikro-orm/core&#x27;;
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(
-    configService: ConfigService,
-    private usersService: UsersService,
-  ) {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: configService.getOrThrow&lt;string&gt;(&#x27;auth.jwt.secret&#x27;),
-      passReqToCallback: true,
-    });
-  }
+export class RequestContextMiddleware implements NestMiddleware {
+  constructor(private readonly orm: MikroORM) {}
 
-  /**
-   * NOTE: &#x60;req&#x60; is available here and can be used to extract the raw JWT.
-   *
-   * This can support enforcing a single active session per user:
-   * - Compare the JWT in the request with the token stored in the user document.
-   * - Reject the request if they don&#x27;t match (i.e., user is logged in elsewhere).
-   *
-   * Implementation details:
-   * - Store or update the token in the user document during login and token refresh.
-   * - This logic should be implemented in the
-   * &#x60;login()&#x60; (needs to be implemented as login currently stops at the controller level and no it&#x27;s not wrong)
-   *  and &#x60;refresh()&#x60; methods of the &#x60;AuthService&#x60; class.
-   */
-  async validate(req: Request, payload: any) {
-    const user &#x3D; await this.usersService.findOne(
-      {
-        id: payload.sub,
-      },
-      { failHandler: () &#x3D;&gt; new NotFoundException(&#x27;User not found&#x27;) },
-    );
-    return user;
+  use(req: Request, res: Response, next: NextFunction): void {
+    RequestContext.create(this.orm.em, next);
   }
 }
 </code></pre>
@@ -411,7 +357,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'JwtStrategy.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RequestContextMiddleware.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

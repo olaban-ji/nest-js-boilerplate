@@ -125,9 +125,6 @@
                             <a href="#otelSDK" title="src/tracing.ts" ><b>otelSDK</b>&nbsp;&nbsp;&nbsp;(src/.../tracing.ts)</a>
                         </li>
                         <li>
-                            <a href="#parseTimeString" title="src/common/utils/time.utils.ts" ><b>parseTimeString</b>&nbsp;&nbsp;&nbsp;(src/.../time.utils.ts)</a>
-                        </li>
-                        <li>
                             <a href="#PASSWORD_CHARACTER_SET" title="src/common/constants/index.ts" ><b>PASSWORD_CHARACTER_SET</b>&nbsp;&nbsp;&nbsp;(src/.../index.ts)</a>
                         </li>
                         <li>
@@ -474,44 +471,6 @@
     console.log(&#x27;Prometheus exporter initialized&#x27;);
   },
 )</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/common/utils/time.utils.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="parseTimeString"></a>
-                    <span class="name">
-                        <span ><b>parseTimeString</b></span>
-                        <a href="#parseTimeString"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>(
-  timeString: string,
-): { value: string; unit: moment.DurationInputArg2 } &#x3D;&gt; {
-  const parsed &#x3D; timeString.match(/^(\d+)([smhdwMy])$/);
-
-  if (!parsed) {
-    throw new Error(
-      &#x60;Invalid time format: ${timeString}. Expected format like &#x27;1h&#x27;, &#x27;30m&#x27;, &#x27;7d&#x27;&#x60;,
-    );
-  }
-
-  const value &#x3D; parsed[1];
-  const unit &#x3D; parsed[2] as moment.DurationInputArg2;
-
-  return { value, unit };
-}</code>
                     </td>
                 </tr>
 

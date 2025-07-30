@@ -147,6 +147,14 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
+                                <a href="#changePassword" >changePassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
@@ -155,6 +163,14 @@
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getProfile" >getProfile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateProfile" >updateProfile</a>
                             </li>
                         </ul>
                     </td>
@@ -173,6 +189,98 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changePassword"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>changePassword</b></span>
+                        <a href="#changePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changePassword(data: <a href="../classes/ChangePasswordDto.html" target="_self">ChangePasswordDto</a>, req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;change-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOperation({summary: &#x27;Change user password&#x27;})<br />@ApiBody({type: ChangePasswordDto})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/modules/users/users.controller.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../classes/ChangePasswordDto.html" target="_self" >ChangePasswordDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ApiResponse.html" target="_self" >Promise&lt;ApiResponse&lt;any&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -206,8 +314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/modules/users/users.controller.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/modules/users/users.controller.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -285,8 +393,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/modules/users/users.controller.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/modules/users/users.controller.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -332,6 +440,98 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateProfile"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updateProfile</b></span>
+                        <a href="#updateProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateProfile(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, body: <a href="../classes/UpdateProfileDto.html" target="_self">UpdateProfileDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;update-profile&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOperation({summary: &#x27;Update user profile&#x27;})<br />@ApiBody({type: UpdateProfileDto})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/modules/users/users.controller.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>body</td>
+                                            <td>
+                                                            <code><a href="../classes/UpdateProfileDto.html" target="_self" >UpdateProfileDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ApiResponse.html" target="_self" >Promise&lt;ApiResponse&lt;any&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
@@ -342,6 +542,7 @@
   Get,
   HttpCode,
   HttpStatus,
+  Patch,
   Post,
   Request,
 } from &#x27;@nestjs/common&#x27;;
@@ -350,6 +551,8 @@ import { UsersService } from &#x27;./users.service&#x27;;
 import { Public } from &#x27;../auth/decorators/public.decorator&#x27;;
 import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
 import { ApiResponse } from &#x27;src/common/interfaces/api-response.interface&#x27;;
+import { ChangePasswordDto } from &#x27;./dto/change-password.dto&#x27;;
+import { UpdateProfileDto } from &#x27;./dto/update-profile.dto&#x27;;
 
 @ApiTags(&#x27;users&#x27;)
 @Controller(&#x27;users&#x27;)
@@ -380,6 +583,39 @@ export class UsersController {
       statusCode: HttpStatus.OK,
       message: &#x27;Profile fetched successfully&#x27;,
       data: { user: safeUser },
+    };
+  }
+
+  @Patch(&#x27;update-profile&#x27;)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: &#x27;Update user profile&#x27; })
+  @ApiBody({ type: UpdateProfileDto })
+  async updateProfile(
+    @Request() req: any,
+    @Body() body: UpdateProfileDto,
+  ): Promise&lt;ApiResponse&lt;any&gt;&gt; {
+    const userId &#x3D; req?.user?.id;
+    const updatedUser &#x3D; await this.usersService.update({ id: userId, ...body });
+    return {
+      statusCode: HttpStatus.OK,
+      message: &#x27;Profile updated successfully&#x27;,
+      data: updatedUser,
+    };
+  }
+
+  @Post(&#x27;change-password&#x27;)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: &#x27;Change user password&#x27; })
+  @ApiBody({ type: ChangePasswordDto })
+  async changePassword(
+    @Body() data: ChangePasswordDto,
+    @Request() req: any,
+  ): Promise&lt;ApiResponse&lt;any&gt;&gt; {
+    const userId &#x3D; req.user.id;
+    await this.usersService.changePassword(userId, data);
+    return {
+      statusCode: HttpStatus.OK,
+      message: &#x27;Password Changed Successfully&#x27;,
     };
   }
 }

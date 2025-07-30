@@ -424,8 +424,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -493,8 +493,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -619,8 +619,8 @@
 import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
 import { User } from &#x27;../entities/user.entity&#x27;;
-import { UserRoleEnum } from &#x27;src/common/enums&#x27;;
 import * as bcrypt from &#x27;bcrypt&#x27;;
+import { normalizeUserFields } from &#x27;src/common/utils/user.util&#x27;;
 
 @Injectable()
 export class UsersSubscriber implements EventSubscriber&lt;User&gt; {
@@ -649,38 +649,7 @@ export class UsersSubscriber implements EventSubscriber&lt;User&gt; {
   }
 
   private normalizeFields(user: User) {
-    if (user.email) {
-      user.email &#x3D; user.email.toLowerCase().trim();
-
-      const emailRegex &#x3D; /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(user.email)) {
-        throw new Error(&#x27;Invalid email format&#x27;);
-      }
-    }
-
-    const trimFields: (keyof User)[] &#x3D; [
-      &#x27;avatar&#x27;,
-      &#x27;firstName&#x27;,
-      &#x27;lastName&#x27;,
-      &#x27;address&#x27;,
-      &#x27;city&#x27;,
-      &#x27;postalCode&#x27;,
-      &#x27;state&#x27;,
-      &#x27;country&#x27;,
-      &#x27;countryCode&#x27;,
-      &#x27;phoneNumber&#x27;,
-    ];
-
-    trimFields.forEach((field) &#x3D;&gt; {
-      const value &#x3D; user[field];
-      if (value &amp;&amp; typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
-        (user[field] as any) &#x3D; value.trim();
-      }
-    });
-
-    if (user.role) {
-      user.role &#x3D; user.role.toLowerCase() as UserRoleEnum;
-    }
+    normalizeUserFields(user);
   }
 
   private isPasswordModified(user: User): boolean {
