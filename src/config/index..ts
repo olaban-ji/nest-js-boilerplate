@@ -35,6 +35,7 @@ export default () => {
         min: parseInt(process.env.DB_POOL_MIN, 10),
         max: parseInt(process.env.DB_POOL_MAX, 10),
       },
+      ssl: process.env.DB_SSL === 'true',
       logging: process.env.DB_LOGGING === 'true',
     },
     driver: {

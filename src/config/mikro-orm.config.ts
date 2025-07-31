@@ -5,6 +5,7 @@ import { Migrator } from '@mikro-orm/migrations';
 import { TSMigrationGenerator } from '@mikro-orm/migrations';
 
 const PRODUCTION = 'production';
+const sslEnabled = process.env.DB_SSL === 'true';
 
 export default defineConfig({
   driver: PostgreSqlDriver,
@@ -25,8 +26,17 @@ export default defineConfig({
   strict: true,
   debug: process.env.DB_LOGGING === 'true',
   extensions: [Migrator],
+  driverOptions: sslEnabled
+    ? {
+        connection: {
+          ssl: {
+            rejectUnauthorized: false,
+          },
+        },
+      }
+    : undefined,
   migrations: {
-    tableName: process.env.DM_MIGRATION_TABLE_NAME,
+    tableName: process.env.DB_MIGRATION_TABLE_NAME,
     path: 'dist/migrations',
     pathTs: 'src/migrations',
     glob: '!(*.d).{js,ts}',
