@@ -11,8 +11,6 @@ import { PRODUCTION } from './common/constants';
 
 @Injectable()
 export class SchemaService implements OnModuleInit {
-  private readonly logger = new Logger(SchemaService.name);
-
   constructor(
     private readonly orm: MikroORM,
     private readonly configService: ConfigService,
