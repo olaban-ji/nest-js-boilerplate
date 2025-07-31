@@ -10,7 +10,7 @@ LABEL fly_launch_runtime="NestJS"
 WORKDIR /app
 
 # Set production environment
-ENV NODE_ENV="production"
+ENV NODE_ENV="development"
 ARG YARN_VERSION=1.22.21
 RUN npm install -g yarn@$YARN_VERSION --force
 

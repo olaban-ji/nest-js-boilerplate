@@ -1,8 +1,3 @@
-# fly.toml app configuration file generated for nest-js-boilerplate-8mt-1w on 2025-07-31T08:50:57Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = 'nest-js-boilerplate-8mt-1w'
 primary_region = 'iad'
 
@@ -28,37 +23,10 @@ primary_region = 'iad'
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 4
+  min_machines_running = 1
   processes = ['app']
 
-# US East (Ashburn, Virginia) - Primary
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-  memory_mb = 1024
-  regions = ['iad']
-
-# Johannesburg, South Africa
-[[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-  memory_mb = 1024
-  regions = ['jnb']
-
-# EU Central (Frankfurt)
-[[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-  memory_mb = 1024
-  regions = ['fra']
-
-# Southeast Asia (Singapore)
-[[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-  memory_mb = 1024
-  regions = ['sin']
