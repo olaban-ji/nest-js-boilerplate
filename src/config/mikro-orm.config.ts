@@ -20,6 +20,8 @@ export default defineConfig({
   pool: {
     min: parseInt(process.env.DB_POOL_MIN!, 10),
     max: parseInt(process.env.DB_POOL_MAX!, 10),
+    idleTimeoutMillis: parseInt(process.env.DB_POOL_IDLE!, 10),
+    reapIntervalMillis: parseInt(process.env.DB_POOL_REAP!, 10),
   },
   forceUtcTimezone: true,
   validate: true,
