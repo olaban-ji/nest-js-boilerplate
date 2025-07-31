@@ -1,23 +1,6 @@
 app = 'nest-js-boilerplate-8mt-1w'
 primary_region = 'iad'
 
-[env]
-  DB_LOGGING = "true"
-  DB_NAME = "defaultdb"
-  DB_POOL_MAX = "20"
-  DB_POOL_MIN = "0"
-  DB_PORT = "22306"
-  DB_SSL = "true"
-  DB_MIGRATION_TABLE_NAME = "nest_js_boilerplate_migrations"
-  JWT_EXPIRES_IN = "30m"
-  JWT_REFRESH_EXPIRES_IN = "1h"
-  NODE_ENV = "development"
-  PORT = "3000"
-  REDIS_NAMESPACE = "nest_js_boilerplate"
-  SALT_ROUNDS = "10"
-  SMTP_PORT = "587"
-  SMTP_SECURE = "false"
-
 [http_service]
   internal_port = 3000
   force_https = true
