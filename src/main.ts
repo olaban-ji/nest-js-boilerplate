@@ -81,7 +81,9 @@ async function bootstrap() {
   );
 
   const port = configService.get<number>('port') || 3000;
-  await app.listen(port, () => {
+  const host = '0.0.0.0';
+
+  await app.listen(port, host, () => {
     instance.info(APP_NAME);
     instance.info(`🚀 Application is listening on port ${port}`);
   });
