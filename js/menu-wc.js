@@ -236,7 +236,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/BaseEntity.html" data-type="entity-link" >BaseEntity</a>
                             </li>
                             <li class="link">
-                                <a href="classes/CatchEverythingFilter.html" data-type="entity-link" >CatchEverythingFilter</a>
+                                <a href="classes/CatchAllFilter.html" data-type="entity-link" >CatchAllFilter</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ChangePasswordDto.html" data-type="entity-link" >ChangePasswordDto</a>

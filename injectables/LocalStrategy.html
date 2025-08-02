@@ -169,7 +169,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/auth/strategies/local.strategy.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modules/auth/strategies/local.strategy.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -246,8 +246,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/modules/auth/strategies/local.strategy.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/modules/auth/strategies/local.strategy.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -316,7 +316,10 @@ import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
 import { Injectable, UnauthorizedException } from &#x27;@nestjs/common&#x27;;
 import { AuthService } from &#x27;../auth.service&#x27;;
 import { UsersService } from &#x27;@modules/users/users.service&#x27;;
-import moment from &#x27;moment&#x27;;
+import dayjs from &#x27;dayjs&#x27;;
+import utc from &#x27;dayjs/plugin/utc&#x27;;
+
+dayjs.extend(utc);
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -334,7 +337,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
     await this.usersService.update({
       id: user.id,
-      lastLoggedIn: moment().utc().toDate(),
+      lastLoggedIn: dayjs().utc().toDate(),
     });
     return user;
   }

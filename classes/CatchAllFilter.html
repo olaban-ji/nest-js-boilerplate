@@ -96,7 +96,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >CatchEverythingFilter</li>
+  <li class="breadcrumb-item" >CatchAllFilter</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -279,7 +279,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>CatchEverythingFilter.name</code>
+                        <i>Default value : </i><code>CatchAllFilter.name</code>
                     </td>
                 </tr>
                     <tr>
@@ -750,8 +750,8 @@ import { HandledException } from &#x27;../types&#x27;;
 import { ErrorResponse } from &#x27;../interfaces/error-response.interface&#x27;;
 
 @Catch()
-export class CatchEverythingFilter implements ExceptionFilter {
-  private readonly loggerContext &#x3D; CatchEverythingFilter.name;
+export class CatchAllFilter implements ExceptionFilter {
+  private readonly loggerContext &#x3D; CatchAllFilter.name;
 
   constructor(
     private readonly httpAdapterHost: HttpAdapterHost,
@@ -900,7 +900,7 @@ export class CatchEverythingFilter implements ExceptionFilter {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'CatchEverythingFilter.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CatchAllFilter.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
