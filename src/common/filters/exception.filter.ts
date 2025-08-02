@@ -16,8 +16,8 @@ import { HandledException } from '../types';
 import { ErrorResponse } from '../interfaces/error-response.interface';
 
 @Catch()
-export class CatchEverythingFilter implements ExceptionFilter {
-  private readonly loggerContext = CatchEverythingFilter.name;
+export class CatchAllFilter implements ExceptionFilter {
+  private readonly loggerContext = CatchAllFilter.name;
 
   constructor(
     private readonly httpAdapterHost: HttpAdapterHost,
