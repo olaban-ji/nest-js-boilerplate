@@ -9,10 +9,13 @@ import helmet from 'helmet';
 import { RoleGuard } from './common/guards/role.guard';
 import { ConfigService } from '@nestjs/config';
 import winston from 'winston';
-import moment from 'moment-timezone';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { APP_NAME } from './common/constants';
 import util from 'util';
 import otelSDK, { prometheusExporter } from './tracing';
+
+dayjs.extend(utc);
 
 async function bootstrap() {
   otelSDK.start();
@@ -29,7 +32,9 @@ async function bootstrap() {
             fillExcept: ['timestamp', 'level', 'message', 'label'],
           }),
           winston.format.printf(({ timestamp, level, message, metadata }) => {
-            const utcTimeStamp = moment(timestamp).utc().format();
+            const utcTimeStamp = dayjs(timestamp as string)
+              .utc()
+              .format();
 
             const metaString = Object.keys(metadata).length
               ? `\n${util.inspect(metadata, { colors: true, depth: 5 })}`

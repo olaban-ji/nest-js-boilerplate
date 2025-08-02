@@ -3,7 +3,10 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { UsersService } from '@modules/users/users.service';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -21,7 +24,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
     await this.usersService.update({
       id: user.id,
-      lastLoggedIn: moment().utc().toDate(),
+      lastLoggedIn: dayjs().utc().toDate(),
     });
     return user;
   }
