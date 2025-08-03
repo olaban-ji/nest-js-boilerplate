@@ -8,7 +8,7 @@ import {
   Matches,
   MinLength,
 } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { UserRoleEnum } from '@common/enums';
 import { Transform } from 'class-transformer';
 
@@ -114,7 +114,7 @@ export class CreateUserDto {
   @MinLength(10)
   password: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Role of the user',
     example: UserRoleEnum.USER,
     enum: UserRoleEnum,
@@ -122,6 +122,7 @@ export class CreateUserDto {
   @IsEnum(UserRoleEnum, {
     message: `role must be one of: ${Object.values(UserRoleEnum).join(', ')}`,
   })
+  @IsOptional()
   role: UserRoleEnum;
 
   @IsBoolean()

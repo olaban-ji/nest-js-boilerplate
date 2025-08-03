@@ -109,7 +109,7 @@ export class User extends BaseEntity {
     items: () => UserRoleEnum,
     type: 'varchar',
     length: 20,
-    default: UserRoleEnum.USER,
+    defaultRaw: UserRoleEnum.USER,
     comment: 'User role',
   })
   role: UserRoleEnum = UserRoleEnum.USER;
