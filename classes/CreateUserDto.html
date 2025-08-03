@@ -218,6 +218,7 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#role" >role</a>
                             </li>
                             <li>
@@ -316,7 +317,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/modules/users/dto/create-user.dto.ts:129</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/modules/users/dto/create-user.dto.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -681,6 +682,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>role</b></span>
                         <a href="#role"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -697,13 +699,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Role of the user&#x27;, example: undefined, enum: UserRoleEnum})<br />@IsEnum(UserRoleEnum, {message: undefined})<br />
+                            @ApiPropertyOptional({description: &#x27;Role of the user&#x27;, example: undefined, enum: UserRoleEnum})<br />@IsEnum(UserRoleEnum, {message: undefined})<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/modules/users/dto/create-user.dto.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/modules/users/dto/create-user.dto.ts:126</a></div>
                         </td>
                     </tr>
 
@@ -771,7 +773,7 @@
   Matches,
   MinLength,
 } from &#x27;class-validator&#x27;;
-import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;;
 import { UserRoleEnum } from &#x27;@common/enums&#x27;;
 import { Transform } from &#x27;class-transformer&#x27;;
 
@@ -877,7 +879,7 @@ export class CreateUserDto {
   @MinLength(10)
   password: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: &#x27;Role of the user&#x27;,
     example: UserRoleEnum.USER,
     enum: UserRoleEnum,
@@ -885,6 +887,7 @@ export class CreateUserDto {
   @IsEnum(UserRoleEnum, {
     message: &#x60;role must be one of: ${Object.values(UserRoleEnum).join(&#x27;, &#x27;)}&#x60;,
   })
+  @IsOptional()
   role: UserRoleEnum;
 
   @IsBoolean()

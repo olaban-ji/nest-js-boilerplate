@@ -773,7 +773,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Enum({items: () &#x3D;&gt; UserRoleEnum, type: &#x27;varchar&#x27;, length: 20, default: undefined, comment: &#x27;User role&#x27;})<br />
+                            @Enum({items: () &#x3D;&gt; UserRoleEnum, type: &#x27;varchar&#x27;, length: 20, defaultRaw: undefined, comment: &#x27;User role&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -939,7 +939,7 @@ export class User extends BaseEntity {
     items: () &#x3D;&gt; UserRoleEnum,
     type: &#x27;varchar&#x27;,
     length: 20,
-    default: UserRoleEnum.USER,
+    defaultRaw: UserRoleEnum.USER,
     comment: &#x27;User role&#x27;,
   })
   role: UserRoleEnum &#x3D; UserRoleEnum.USER;
