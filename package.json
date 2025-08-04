@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "postinstall": "husky",
     "cli": "node dist/main.cli.js",
-    "create:user": "npm run cli -- create:user",
+    "create:user": "yarn cli create:user",
     "docs:build": "compodoc -p tsconfig.json -d docs --theme material -n \"nest-js-boilerplate-docs\""
   },
   "mikro-orm": {
@@ -130,6 +130,7 @@
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.3",
     "typescript": "^5.1.3",
     "typescript-eslint": "^8.38.0"
   },
