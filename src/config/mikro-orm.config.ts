@@ -3,6 +3,7 @@ import { defineConfig } from '@mikro-orm/core';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { Migrator } from '@mikro-orm/migrations';
 import { TSMigrationGenerator } from '@mikro-orm/migrations';
+import { SeedManager } from '@mikro-orm/seeder';
 
 const PRODUCTION = 'production';
 const sslEnabled = process.env.DB_SSL === 'true';
@@ -27,7 +28,7 @@ export default defineConfig({
   validate: true,
   strict: true,
   debug: process.env.DB_LOGGING === 'true',
-  extensions: [Migrator],
+  extensions: [Migrator, SeedManager],
   driverOptions: sslEnabled
     ? {
         connection: {
@@ -50,5 +51,13 @@ export default defineConfig({
     snapshot: true,
     emit: 'ts',
     generator: TSMigrationGenerator,
+  },
+  seeder: {
+    path: 'dist/seeders',
+    pathTs: 'src/seeders',
+    defaultSeeder: 'DatabaseSeeder',
+    glob: '!(*.d).{js,ts}',
+    emit: 'ts',
+    fileName: (className: string) => className,
   },
 });
