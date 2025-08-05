@@ -248,6 +248,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CreateUserResponseDto.html" data-type="entity-link" >CreateUserResponseDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DatabaseSeeder.html" data-type="entity-link" >DatabaseSeeder</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EmailService.html" data-type="entity-link" >EmailService</a>
                             </li>
                             <li class="link">
@@ -276,6 +279,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/User.html" data-type="entity-link" >User</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UserFactory.html" data-type="entity-link" >UserFactory</a>
                             </li>
                         </ul>
                     </li>
