@@ -80,19 +80,16 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content controller">
                    <div class="content-data">
 
 
 
 
 
-
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >UsersSubscriber</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >UserController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,8 +113,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/users/subscribers/user.subscriber.ts</code>
+            <code>src/modules/user/user.controller.ts</code>
         </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>users</code>
+            </p>
+
 
 
 
@@ -137,28 +142,35 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#beforeCreate" >beforeCreate</a>
+                                <a href="#changePassword" >changePassword</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#beforeUpdate" >beforeUpdate</a>
+                                <a href="#create" >create</a>
                             </li>
                             <li>
-                                <a href="#getSubscribedEntities" >getSubscribedEntities</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#hashPassword" >hashPassword</a>
+                                <a href="#getProfile" >getProfile</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#isPasswordModified" >isPasswordModified</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#normalizeFields" >normalizeFields</a>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateProfile" >updateProfile</a>
                             </li>
                         </ul>
                     </td>
@@ -172,67 +184,6 @@
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(em: EntityManager, configService: ConfigService)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:14</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>em</td>
-                                                  
-                                                        <td>
-                                                                    <code>EntityManager</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>configService</td>
-                                                  
-                                                        <td>
-                                                                    <code>ConfigService</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-
             <section data-compodoc="block-methods">
     
     <h3 id="methods">
@@ -242,26 +193,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="beforeCreate"></a>
+                    <a name="changePassword"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>beforeCreate</b></span>
-                        <a href="#beforeCreate"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>changePassword</b></span>
+                        <a href="#changePassword"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>beforeCreate(args: <a href="../classes/User.html" target="_self">EventArgs&lt;User&gt;</a>)</code>
+                    <code>changePassword(data: <a href="../classes/ChangePasswordDto.html" target="_self">ChangePasswordDto</a>, req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;change-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOperation({summary: &#x27;Change user password&#x27;})<br />@ApiBody({type: ChangePasswordDto})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/modules/user/user.controller.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -282,9 +244,21 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>args</td>
+                                                <td>data</td>
                                             <td>
-                                                            <code><a href="../classes/User.html" target="_self" >EventArgs&lt;User&gt;</a></code>
+                                                            <code><a href="../classes/ChangePasswordDto.html" target="_self" >ChangePasswordDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -297,7 +271,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/ApiResponse.html" target="_self" >Promise&lt;ApiResponse&lt;any&gt;&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -311,133 +285,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="beforeUpdate"></a>
+                    <a name="create"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>beforeUpdate</b></span>
-                        <a href="#beforeUpdate"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>beforeUpdate(args: <a href="../classes/User.html" target="_self">EventArgs&lt;User&gt;</a>)</code>
+                    <code>create(user: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Public()<br />@Post(&#x27;sign-up&#x27;)<br />@ApiOperation({summary: &#x27;Sign up a new user&#x27;})<br />@ApiBody({type: CreateUserDto})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:34</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>args</td>
-                                            <td>
-                                                            <code><a href="../classes/User.html" target="_self" >EventArgs&lt;User&gt;</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getSubscribedEntities"></a>
-                    <span class="name">
-                        <span ><b>getSubscribedEntities</b></span>
-                        <a href="#getSubscribedEntities"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getSubscribedEntities()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="22"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:22</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>EntityName[]</code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="hashPassword"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                        <span ><b>hashPassword</b></span>
-                        <a href="#hashPassword"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>hashPassword(user: <a href="../classes/User.html" target="_self">User</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/modules/user/user.controller.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -460,7 +338,7 @@
                                         <tr>
                                                 <td>user</td>
                                             <td>
-                                                            <code><a href="../classes/User.html" target="_self" >User</a></code>
+                                                            <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
                                             </td>
 
                                             <td>
@@ -473,7 +351,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/ApiResponse.html" target="_self" >Promise&lt;ApiResponse&lt;any&gt;&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -487,26 +365,36 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isPasswordModified"></a>
+                    <a name="getProfile"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>isPasswordModified</b></span>
-                        <a href="#isPasswordModified"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getProfile</b></span>
+                        <a href="#getProfile"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>isPasswordModified(user: <a href="../classes/User.html" target="_self">User</a>)</code>
+                    <code>getProfile(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;profile&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOperation({summary: &#x27;Get user profile&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/modules/user/user.controller.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -527,9 +415,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>user</td>
+                                                <td>req</td>
                                             <td>
-                                                            <code><a href="../classes/User.html" target="_self" >User</a></code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -542,7 +430,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/ApiResponse.html" target="_self" >Promise&lt;ApiResponse&lt;any&gt;&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -556,26 +444,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="normalizeFields"></a>
+                    <a name="updateProfile"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>normalizeFields</b></span>
-                        <a href="#normalizeFields"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updateProfile</b></span>
+                        <a href="#updateProfile"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>normalizeFields(user: <a href="../classes/User.html" target="_self">User</a>)</code>
+                    <code>updateProfile(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, body: <a href="../classes/UpdateProfileDto.html" target="_self">UpdateProfileDto</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;update-profile&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOperation({summary: &#x27;Update user profile&#x27;})<br />@ApiBody({type: UpdateProfileDto})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/modules/users/subscribers/user.subscriber.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/modules/user/user.controller.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -596,9 +495,21 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>user</td>
+                                                <td>req</td>
                                             <td>
-                                                            <code><a href="../classes/User.html" target="_self" >User</a></code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>body</td>
+                                            <td>
+                                                            <code><a href="../classes/UpdateProfileDto.html" target="_self" >UpdateProfileDto</a></code>
                                             </td>
 
                                             <td>
@@ -611,7 +522,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/ApiResponse.html" target="_self" >Promise&lt;ApiResponse&lt;any&gt;&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -621,76 +532,99 @@
             </tr>
         </tbody>
     </table>
-</section>
-
-    </div>
+</section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  EventSubscriber,
-  EntityName,
-  EventArgs,
-  EntityManager,
-} from &#x27;@mikro-orm/core&#x27;;
-import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
-import { User } from &#x27;../entities/user.entity&#x27;;
-import * as bcrypt from &#x27;bcrypt&#x27;;
-import { normalizeUserFields } from &#x27;@common/utils/user.util&#x27;;
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Patch,
+  Post,
+  Request,
+} from &#x27;@nestjs/common&#x27;;
+import { ApiTags, ApiOperation, ApiBody } from &#x27;@nestjs/swagger&#x27;;
+import { UserService } from &#x27;./user.service&#x27;;
+import { Public } from &#x27;../auth/decorators/public.decorator&#x27;;
+import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
+import { ApiResponse } from &#x27;@common/interfaces/api-response.interface&#x27;;
+import { ChangePasswordDto } from &#x27;./dto/change-password.dto&#x27;;
+import { UpdateProfileDto } from &#x27;./dto/update-profile.dto&#x27;;
 
-@Injectable()
-export class UsersSubscriber implements EventSubscriber&lt;User&gt; {
-  constructor(
-    em: EntityManager,
-    private readonly configService: ConfigService,
-  ) {
-    em.getEventManager().registerSubscriber(this);
+@ApiTags(&#x27;users&#x27;)
+@Controller(&#x27;users&#x27;)
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  @Public()
+  @Post(&#x27;sign-up&#x27;)
+  @ApiOperation({ summary: &#x27;Sign up a new user&#x27; })
+  @ApiBody({ type: CreateUserDto })
+  async create(@Body() user: CreateUserDto): Promise&lt;ApiResponse&lt;any&gt;&gt; {
+    const newUser &#x3D; await this.userService.create(user);
+    return {
+      statusCode: HttpStatus.CREATED,
+      message: &#x27;User created successfully&#x27;,
+      data: newUser,
+    };
   }
 
-  getSubscribedEntities(): EntityName&lt;User&gt;[] {
-    return [User];
+  @Get(&#x27;profile&#x27;)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: &#x27;Get user profile&#x27; })
+  async getProfile(@Request() req: any): Promise&lt;ApiResponse&lt;any&gt;&gt; {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...safeUser } &#x3D; req.user;
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: &#x27;Profile fetched successfully&#x27;,
+      data: { user: safeUser },
+    };
   }
 
-  async beforeCreate(args: EventArgs&lt;User&gt;) {
-    const user &#x3D; args.entity;
-
-    this.normalizeFields(user);
-
-    await this.hashPassword(user);
+  @Patch(&#x27;update-profile&#x27;)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: &#x27;Update user profile&#x27; })
+  @ApiBody({ type: UpdateProfileDto })
+  async updateProfile(
+    @Request() req: any,
+    @Body() body: UpdateProfileDto,
+  ): Promise&lt;ApiResponse&lt;any&gt;&gt; {
+    const userId &#x3D; req?.user?.id;
+    const updatedUser &#x3D; await this.userService.update({ id: userId, ...body });
+    return {
+      statusCode: HttpStatus.OK,
+      message: &#x27;Profile updated successfully&#x27;,
+      data: updatedUser,
+    };
   }
 
-  async beforeUpdate(args: EventArgs&lt;User&gt;) {
-    const user &#x3D; args.entity;
-
-    this.normalizeFields(user);
-
-    if (this.isPasswordModified(user)) {
-      await this.hashPassword(user);
-    }
-  }
-
-  private normalizeFields(user: User) {
-    normalizeUserFields(user);
-  }
-
-  private isPasswordModified(user: User): boolean {
-    const originalData &#x3D; (user as any).__helper?.__originalEntityData;
-
-    if (!originalData) return true;
-
-    return user.password !&#x3D;&#x3D; originalData.password;
-  }
-
-  private async hashPassword(user: User) {
-    const saltRounds &#x3D; this.configService.get&lt;number&gt;(&#x27;auth.saltRounds&#x27;);
-    user.password &#x3D; await bcrypt.hash(user.password, saltRounds);
+  @Post(&#x27;change-password&#x27;)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: &#x27;Change user password&#x27; })
+  @ApiBody({ type: ChangePasswordDto })
+  async changePassword(
+    @Body() data: ChangePasswordDto,
+    @Request() req: any,
+  ): Promise&lt;ApiResponse&lt;any&gt;&gt; {
+    const userId &#x3D; req.user.id;
+    await this.userService.changePassword(userId, data);
+    return {
+      statusCode: HttpStatus.OK,
+      message: &#x27;Password Changed Successfully&#x27;,
+    };
   }
 }
 </code></pre>
     </div>
-
 </div>
+
+
+
 
 
 
@@ -729,8 +663,8 @@ export class UsersSubscriber implements EventSubscriber&lt;User&gt; {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'UsersSubscriber.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

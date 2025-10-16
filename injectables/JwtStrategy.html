@@ -164,7 +164,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService, usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>)</code>
+<code>constructor(configService: ConfigService, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -199,10 +199,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>usersService</td>
+                                                        <td>userService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -328,14 +328,14 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ExtractJwt, Strategy } from &#x27;passport-jwt&#x27;;
 import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
 import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
-import { UsersService } from &#x27;@modules/users/users.service&#x27;;
+import { UserService } from &#x27;@modules/user/user.service&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     configService: ConfigService,
-    private usersService: UsersService,
+    private userService: UserService,
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -359,7 +359,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
    *  and &#x60;refresh()&#x60; methods of the &#x60;AuthService&#x60; class.
    */
   async validate(req: Request, payload: any) {
-    const user &#x3D; await this.usersService.findOne(
+    const user &#x3D; await this.userService.findOne(
       {
         id: payload.sub,
       },

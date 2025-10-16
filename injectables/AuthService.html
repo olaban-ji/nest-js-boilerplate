@@ -215,7 +215,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(appRedisService: <a href="../injectables/AppRedisService.html" target="_self">AppRedisService</a>, usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>, jwtService: JwtService, configService: ConfigService, passwordResetEmailQueue: Queue)</code>
+<code>constructor(appRedisService: <a href="../injectables/AppRedisService.html" target="_self">AppRedisService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, jwtService: JwtService, configService: ConfigService, passwordResetEmailQueue: Queue)</code>
                     </td>
                 </tr>
                         <tr>
@@ -250,10 +250,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>usersService</td>
+                                                        <td>userService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -879,9 +879,9 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from &#x27;@nestjs/common&#x27;;
-import { UsersService } from &#x27;../users/users.service&#x27;;
+import { UserService } from &#x27;../user/user.service&#x27;;
 import { JsonWebTokenError, JwtService, NotBeforeError } from &#x27;@nestjs/jwt&#x27;;
-import { User } from &#x27;../users/entities/user.entity&#x27;;
+import { User } from &#x27;../user/entities/user.entity&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
 import { InjectQueue } from &#x27;@nestjs/bullmq&#x27;;
 import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from &#x27;@common/constants&#x27;;
@@ -901,7 +901,7 @@ export class AuthService {
 
   constructor(
     private readonly appRedisService: AppRedisService,
-    private readonly usersService: UsersService,
+    private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     @InjectQueue(PASSWORD_RESET_EMAIL_QUEUE_NAME)
@@ -925,7 +925,7 @@ export class AuthService {
     email: string,
     pass: string,
   ): Promise&lt;Omit&lt;User, &#x27;password&#x27;&gt; | null&gt; {
-    const user &#x3D; await this.usersService.findOne(
+    const user &#x3D; await this.userService.findOne(
       { email },
       { failHandler: () &#x3D;&gt; new NotFoundException(&#x27;User not found&#x27;) },
     );
@@ -979,7 +979,7 @@ export class AuthService {
       throw new UnauthorizedException(&#x27;Invalid refresh token&#x27;);
     }
 
-    const user &#x3D; await this.usersService.findOne(
+    const user &#x3D; await this.userService.findOne(
       {
         id: payload.sub,
       },
@@ -1007,7 +1007,7 @@ export class AuthService {
   }
 
   async forgotPassword(email: string): Promise&lt;void&gt; {
-    const user &#x3D; await this.usersService.findOne(
+    const user &#x3D; await this.userService.findOne(
       { email },
       { failHandler: () &#x3D;&gt; new NotFoundException(&#x27;User not found&#x27;) },
     );
@@ -1025,7 +1025,7 @@ export class AuthService {
       resetUrl,
     });
 
-    await this.usersService.update({
+    await this.userService.update({
       id: user.id,
       passwordResetRequested: true,
     });
@@ -1041,7 +1041,7 @@ export class AuthService {
     }
 
     const payload &#x3D; this.jwtService.verify(resetToken);
-    const user &#x3D; await this.usersService.findOne(
+    const user &#x3D; await this.userService.findOne(
       {
         email: payload.email,
       },
@@ -1054,7 +1054,7 @@ export class AuthService {
 
     const salt &#x3D; await bcrypt.genSalt(this.saltRounds);
     const hashedPassword &#x3D; await bcrypt.hash(newPassword, salt);
-    await this.usersService.update({
+    await this.userService.update({
       id: user.id,
       password: hashedPassword,
       passwordResetRequested: false,

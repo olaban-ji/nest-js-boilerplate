@@ -164,7 +164,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>)</code>
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -199,10 +199,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>usersService</td>
+                                                        <td>userService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -315,7 +315,7 @@
 import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
 import { Injectable, UnauthorizedException } from &#x27;@nestjs/common&#x27;;
 import { AuthService } from &#x27;../auth.service&#x27;;
-import { UsersService } from &#x27;@modules/users/users.service&#x27;;
+import { UserService } from &#x27;@modules/user/user.service&#x27;;
 import dayjs from &#x27;dayjs&#x27;;
 import utc from &#x27;dayjs/plugin/utc&#x27;;
 
@@ -325,7 +325,7 @@ dayjs.extend(utc);
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(
     private authService: AuthService,
-    private usersService: UsersService,
+    private userService: UserService,
   ) {
     super({ usernameField: &#x27;email&#x27; });
   }
@@ -335,7 +335,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException(&#x27;Invalid credentials&#x27;);
     }
-    await this.usersService.update({
+    await this.userService.update({
       id: user.id,
       lastLoggedIn: dayjs().utc().toDate(),
     });
