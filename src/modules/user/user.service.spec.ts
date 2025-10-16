@@ -24,10 +24,6 @@ describe('User Service Unit Spec', () => {
     appRedisService = unitRef.get(AppRedisService);
   });
 
-  it('should be defined', () => {
-    expect(userService).toBeDefined();
-  });
-
   describe('create', () => {
     const userData = {
       email: 'test@example.com',
