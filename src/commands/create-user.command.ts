@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Command, CommandRunner } from 'nest-commander';
-import { UsersService } from '@modules/users/users.service';
+import { UserService } from '@modules/user/user.service';
 import { Option } from 'nest-commander';
 import chalk from 'chalk';
 import { UserRoleEnum } from '@common/enums';
@@ -15,7 +15,7 @@ export class CreateUserCommand extends CommandRunner {
 
   constructor(
     private readonly em: EntityManager,
-    private readonly usersService: UsersService,
+    private readonly userService: UserService,
   ) {
     super();
   }
@@ -31,7 +31,7 @@ export class CreateUserCommand extends CommandRunner {
       }
 
       await this.em.transactional(async () => {
-        await this.usersService.create({
+        await this.userService.create({
           email,
           firstName,
           lastName,

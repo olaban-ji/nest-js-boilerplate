@@ -4,8 +4,8 @@ import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { Migrator } from '@mikro-orm/migrations';
 import { TSMigrationGenerator } from '@mikro-orm/migrations';
 import { SeedManager } from '@mikro-orm/seeder';
+import { PRODUCTION } from '@common/constants';
 
-const PRODUCTION = 'production';
 const sslEnabled = process.env.DB_SSL === 'true';
 
 export default defineConfig({

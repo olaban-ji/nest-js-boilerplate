@@ -9,7 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import configuration from './config/index.';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from './modules/users/users.module';
+import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { MorganMiddleware } from './common/middlewares/morgan.middleware';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
@@ -29,12 +29,13 @@ import mikroOrmConfig from '@config/mikro-orm.config';
       isGlobal: true,
       load: [configuration],
       cache: true,
+      ignoreEnvFile: process.env.NODE_ENV === 'production',
     }),
     MikroOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: () => mikroOrmConfig,
     }),
-    UsersModule,
+    UserModule,
     AuthModule,
     BullModule.forRootAsync({
       inject: [ConfigService],

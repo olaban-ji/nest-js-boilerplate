@@ -11,7 +11,7 @@ import * as bcrypt from 'bcrypt';
 import { normalizeUserFields } from '@common/utils/user.util';
 
 @Injectable()
-export class UsersSubscriber implements EventSubscriber<User> {
+export class UserSubscriber implements EventSubscriber<User> {
   constructor(
     em: EntityManager,
     private readonly configService: ConfigService,

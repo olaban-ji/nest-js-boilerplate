@@ -5,9 +5,9 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import { UserService } from '../user/user.service';
 import { JsonWebTokenError, JwtService, NotBeforeError } from '@nestjs/jwt';
-import { User } from '../users/entities/user.entity';
+import { User } from '../user/entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 import { InjectQueue } from '@nestjs/bullmq';
 import { PASSWORD_RESET_EMAIL_QUEUE_NAME } from '@common/constants';
@@ -27,7 +27,7 @@ export class AuthService {
 
   constructor(
     private readonly appRedisService: AppRedisService,
-    private readonly usersService: UsersService,
+    private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     @InjectQueue(PASSWORD_RESET_EMAIL_QUEUE_NAME)
@@ -51,7 +51,7 @@ export class AuthService {
     email: string,
     pass: string,
   ): Promise<Omit<User, 'password'> | null> {
-    const user = await this.usersService.findOne(
+    const user = await this.userService.findOne(
       { email },
       { failHandler: () => new NotFoundException('User not found') },
     );
@@ -105,7 +105,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid refresh token');
     }
 
-    const user = await this.usersService.findOne(
+    const user = await this.userService.findOne(
       {
         id: payload.sub,
       },
@@ -133,7 +133,7 @@ export class AuthService {
   }
 
   async forgotPassword(email: string): Promise<void> {
-    const user = await this.usersService.findOne(
+    const user = await this.userService.findOne(
       { email },
       { failHandler: () => new NotFoundException('User not found') },
     );
@@ -151,7 +151,7 @@ export class AuthService {
       resetUrl,
     });
 
-    await this.usersService.update({
+    await this.userService.update({
       id: user.id,
       passwordResetRequested: true,
     });
@@ -167,7 +167,7 @@ export class AuthService {
     }
 
     const payload = this.jwtService.verify(resetToken);
-    const user = await this.usersService.findOne(
+    const user = await this.userService.findOne(
       {
         email: payload.email,
       },
@@ -180,7 +180,7 @@ export class AuthService {
 
     const salt = await bcrypt.genSalt(this.saltRounds);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
-    await this.usersService.update({
+    await this.userService.update({
       id: user.id,
       password: hashedPassword,
       passwordResetRequested: false,

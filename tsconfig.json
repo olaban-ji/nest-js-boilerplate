@@ -20,6 +20,7 @@
     "esModuleInterop": true,
     "inlineSources": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
     "paths": {
       "@common/*": ["common/*"],
       "@modules/*": ["modules/*"],

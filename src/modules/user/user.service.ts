@@ -16,7 +16,7 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 import { AppRedisService } from '@services/redis/redis.service';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   private readonly userIdCacheKey: string;
   private readonly userEmailCacheKey: string;
 
@@ -132,6 +132,17 @@ export class UsersService {
 
     if (newPassword !== confirmPassword) {
       throw new BadRequestException('Passwords do not match');
+    }
+
+    const user = await this.userRepository.findOneOrFail(
+      { id: userId },
+      { failHandler: () => new NotFoundException('User not found') },
+    );
+
+    if (user?.changePassword === false) {
+      throw new BadRequestException(
+        'Password change is not allowed for this user',
+      );
     }
 
     const updatedUser = await this.update({

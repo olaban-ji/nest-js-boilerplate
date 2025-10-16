@@ -9,7 +9,7 @@ import {
   Request,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 import { Public } from '../auth/decorators/public.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiResponse } from '@common/interfaces/api-response.interface';
@@ -18,15 +18,15 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @ApiTags('users')
 @Controller('users')
-export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @Public()
   @Post('sign-up')
   @ApiOperation({ summary: 'Sign up a new user' })
   @ApiBody({ type: CreateUserDto })
   async create(@Body() user: CreateUserDto): Promise<ApiResponse<any>> {
-    const newUser = await this.usersService.create(user);
+    const newUser = await this.userService.create(user);
     return {
       statusCode: HttpStatus.CREATED,
       message: 'User created successfully',
@@ -57,7 +57,7 @@ export class UsersController {
     @Body() body: UpdateProfileDto,
   ): Promise<ApiResponse<any>> {
     const userId = req?.user?.id;
-    const updatedUser = await this.usersService.update({ id: userId, ...body });
+    const updatedUser = await this.userService.update({ id: userId, ...body });
     return {
       statusCode: HttpStatus.OK,
       message: 'Profile updated successfully',
@@ -74,7 +74,7 @@ export class UsersController {
     @Request() req: any,
   ): Promise<ApiResponse<any>> {
     const userId = req.user.id;
-    await this.usersService.changePassword(userId, data);
+    await this.userService.changePassword(userId, data);
     return {
       statusCode: HttpStatus.OK,
       message: 'Password Changed Successfully',

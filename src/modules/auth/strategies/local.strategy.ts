@@ -2,7 +2,7 @@ import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
-import { UsersService } from '@modules/users/users.service';
+import { UserService } from '@modules/user/user.service';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
@@ -12,7 +12,7 @@ dayjs.extend(utc);
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(
     private authService: AuthService,
-    private usersService: UsersService,
+    private userService: UserService,
   ) {
     super({ usernameField: 'email' });
   }
@@ -22,7 +22,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    await this.usersService.update({
+    await this.userService.update({
       id: user.id,
       lastLoggedIn: dayjs().utc().toDate(),
     });
