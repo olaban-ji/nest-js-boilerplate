@@ -1,9 +1,9 @@
-import { defineConfig } from 'eslint/config';
+// eslint.config.mjs
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import prettier from 'eslint-plugin-prettier';
 
-export default defineConfig([
+export default [
   {
     files: ['**/*.ts'],
     languageOptions: {
@@ -38,4 +38,7 @@ export default defineConfig([
       'no-console': 'off',
     },
   },
-]);
+  {
+    ignores: ['dist/**', 'node_modules/**', '**/*.spec.ts', '**/*.js'],
+  },
+];
