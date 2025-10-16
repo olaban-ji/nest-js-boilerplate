@@ -1,0 +1,60 @@
+name: Run Jest Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+      contents: read
+
+    steps:
+      - name: 🧱 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'yarn'
+
+      - name: 📦 Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🧪 Run Jest tests
+        id: jest
+        continue-on-error: true
+        run: yarn test --passWithNoTests --ci --runInBand
+
+      # Only run this check for pull requests
+      - name: 🔍 Check if PR author is a CODEOWNER
+        if: github.event_name == 'pull_request' && steps.jest.outcome == 'failure'
+        run: |
+          AUTHOR=$(jq -r .pull_request.user.login "$GITHUB_EVENT_PATH")
+          echo "Checking if $AUTHOR is a CODEOWNER..."
+          if grep -E "^(@${AUTHOR}|\\*\\s+@${AUTHOR})" .github/CODEOWNERS > /dev/null; then
+            echo "⚠️ Tests failed, but $AUTHOR is a CODEOWNER — allowing merge."
+            exit 0
+          else
+            echo "❌ Tests failed and $AUTHOR is not a CODEOWNER. Merge blocked."
+            exit 1
+          fi
+
+      # Always succeed for pushes, regardless of test result
+      - name: ✅ Allow push to proceed
+        if: github.event_name == 'push'
+        run: echo "Push detected — proceeding even if tests failed."
+
+      - name: 📊 Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
