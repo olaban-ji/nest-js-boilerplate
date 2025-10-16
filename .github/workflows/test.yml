@@ -28,12 +28,17 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: 🧪 Run Jest tests
+      - name: 🧪 Run Jest tests with coverage
         id: jest
         continue-on-error: true
-        run: yarn test --passWithNoTests --ci --runInBand
+        run: yarn test --passWithNoTests --ci --runInBand --coverage
 
-      # Only run this check for pull requests
+      # 🧾 Show coverage summary in the logs
+      - name: 🧾 Show coverage summary
+        if: always()
+        run: npx jest --coverage --coverageReporters=text-summary
+
+      # 🔍 Only run this check for pull requests
       - name: 🔍 Check if PR author is a CODEOWNER
         if: github.event_name == 'pull_request' && steps.jest.outcome == 'failure'
         run: |
@@ -47,11 +52,12 @@ jobs:
             exit 1
           fi
 
-      # Always succeed for pushes, regardless of test result
+      # ✅ Always succeed for pushes, regardless of test result
       - name: ✅ Allow push to proceed
         if: github.event_name == 'push'
         run: echo "Push detected — proceeding even if tests failed."
 
+      # 📊 Upload full HTML coverage report as artifact
       - name: 📊 Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4
