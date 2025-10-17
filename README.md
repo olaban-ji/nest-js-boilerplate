@@ -1,4 +1,5 @@
 [Documentation](https://olaban-ji.github.io/nest-js-boilerplate/)
+[Swagger Documentation](https://nest-js-boilerplate.fly.dev/v1/swagger)
 
 ## Description
 
