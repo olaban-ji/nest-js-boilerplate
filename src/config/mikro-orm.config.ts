@@ -5,8 +5,10 @@ import { Migrator } from '@mikro-orm/migrations';
 import { TSMigrationGenerator } from '@mikro-orm/migrations';
 import { SeedManager } from '@mikro-orm/seeder';
 import { PRODUCTION } from '@common/constants';
+import { createWinstonLogger } from './winston.config';
 
 const sslEnabled = process.env.DB_SSL === 'true';
+const winstonLogger = createWinstonLogger();
 
 export default defineConfig({
   driver: PostgreSqlDriver,
@@ -60,4 +62,5 @@ export default defineConfig({
     emit: 'ts',
     fileName: (className: string) => className,
   },
+  logger: (msg: string) => winstonLogger.debug(msg),
 });
