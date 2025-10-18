@@ -27,7 +27,7 @@ export function setupSwagger(app: INestApplication): void {
 
   const document = SwaggerModule.createDocument(app, config, options);
   SwaggerModule.setup('v1/swagger', app, document, {
-    customSiteTitle: 'NestJS Boilerplate UI',
+    customSiteTitle: 'NestJS Boilerplate Swagger UI',
     swaggerOptions: {
       persistAuthorization: true,
     },
