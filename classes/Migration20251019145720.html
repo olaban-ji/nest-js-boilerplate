@@ -96,7 +96,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >Migration20250730220636</li>
+  <li class="breadcrumb-item" >Migration20251019145720</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -120,7 +120,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/migrations/Migration20250730220636.ts</code>
+            <code>src/migrations/Migration20251019145720.ts</code>
         </p>
 
 
@@ -195,7 +195,7 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="4"
-                                    class="link-to-prism">src/migrations/Migration20250730220636.ts:4</a></div>
+                                    class="link-to-prism">src/migrations/Migration20251019145720.ts:4</a></div>
                         </td>
                     </tr>
 
@@ -223,10 +223,10 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Migration } from &#x27;@mikro-orm/migrations&#x27;;
 
-export class Migration20250730220636 extends Migration {
+export class Migration20251019145720 extends Migration {
   override async up(): Promise&lt;void&gt; {
     this.addSql(
-      &#x60;create table &quot;users&quot; (&quot;id&quot; uuid not null, &quot;deleted_at&quot; timestamptz null, &quot;created_at&quot; timestamptz not null default CURRENT_TIMESTAMP, &quot;updated_at&quot; timestamptz not null default CURRENT_TIMESTAMP, &quot;email&quot; varchar(255) not null, &quot;avatar&quot; varchar(500) null, &quot;first_name&quot; varchar(100) not null, &quot;last_name&quot; varchar(100) not null, &quot;address&quot; text null, &quot;city&quot; varchar(100) null, &quot;postal_code&quot; varchar(20) null, &quot;state&quot; varchar(100) null, &quot;country&quot; varchar(100) null, &quot;country_code&quot; varchar(3) null, &quot;phone_number&quot; varchar(20) null, &quot;password&quot; varchar(255) not null, &quot;role&quot; text check (&quot;role&quot; in (&#x27;admin&#x27;, &#x27;user&#x27;)) not null default &#x27;user&#x27;, &quot;change_password&quot; boolean not null default false, &quot;password_reset_requested&quot; boolean not null default false, &quot;last_logged_in&quot; timestamptz null, constraint &quot;users_pkey&quot; primary key (&quot;id&quot;));&#x60;,
+      &#x60;create table &quot;users&quot; (&quot;id&quot; uuid not null, &quot;deleted_at&quot; timestamptz null, &quot;created_at&quot; timestamptz not null default CURRENT_TIMESTAMP, &quot;updated_at&quot; timestamptz not null default CURRENT_TIMESTAMP, &quot;email&quot; varchar(255) not null, &quot;avatar&quot; varchar(500) null, &quot;first_name&quot; varchar(100) not null, &quot;last_name&quot; varchar(100) not null, &quot;address&quot; text null, &quot;city&quot; varchar(100) null, &quot;postal_code&quot; varchar(20) null, &quot;state&quot; varchar(100) null, &quot;country&quot; varchar(100) null, &quot;country_code&quot; varchar(3) null, &quot;phone_number&quot; varchar(20) null, &quot;password&quot; varchar(255) not null, &quot;role&quot; text check (&quot;role&quot; in (&#x27;admin&#x27;, &#x27;user&#x27;)) not null default user, &quot;change_password&quot; boolean not null default false, &quot;password_reset_requested&quot; boolean not null default false, &quot;last_logged_in&quot; timestamptz null, constraint &quot;users_pkey&quot; primary key (&quot;id&quot;));&#x60;,
     );
     this.addSql(
       &#x60;comment on column &quot;users&quot;.&quot;deleted_at&quot; is &#x27;Soft delete timestamp&#x27;;&#x60;,
@@ -310,7 +310,7 @@ export class Migration20250730220636 extends Migration {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Migration20250730220636.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Migration20251019145720.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

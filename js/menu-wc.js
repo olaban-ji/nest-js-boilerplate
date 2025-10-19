@@ -263,7 +263,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/LoginDto.html" data-type="entity-link" >LoginDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Migration20250730220636.html" data-type="entity-link" >Migration20250730220636</a>
+                                <a href="classes/Migration20251019145720.html" data-type="entity-link" >Migration20251019145720</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PasswordResetEmailConsumer.html" data-type="entity-link" >PasswordResetEmailConsumer</a>
