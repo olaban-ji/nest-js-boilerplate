@@ -1,9 +1,9 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20250730220636 extends Migration {
+export class Migration20251019145720 extends Migration {
   override async up(): Promise<void> {
     this.addSql(
-      `create table "users" ("id" uuid not null, "deleted_at" timestamptz null, "created_at" timestamptz not null default CURRENT_TIMESTAMP, "updated_at" timestamptz not null default CURRENT_TIMESTAMP, "email" varchar(255) not null, "avatar" varchar(500) null, "first_name" varchar(100) not null, "last_name" varchar(100) not null, "address" text null, "city" varchar(100) null, "postal_code" varchar(20) null, "state" varchar(100) null, "country" varchar(100) null, "country_code" varchar(3) null, "phone_number" varchar(20) null, "password" varchar(255) not null, "role" text check ("role" in ('admin', 'user')) not null default 'user', "change_password" boolean not null default false, "password_reset_requested" boolean not null default false, "last_logged_in" timestamptz null, constraint "users_pkey" primary key ("id"));`,
+      `create table "users" ("id" uuid not null, "deleted_at" timestamptz null, "created_at" timestamptz not null default CURRENT_TIMESTAMP, "updated_at" timestamptz not null default CURRENT_TIMESTAMP, "email" varchar(255) not null, "avatar" varchar(500) null, "first_name" varchar(100) not null, "last_name" varchar(100) not null, "address" text null, "city" varchar(100) null, "postal_code" varchar(20) null, "state" varchar(100) null, "country" varchar(100) null, "country_code" varchar(3) null, "phone_number" varchar(20) null, "password" varchar(255) not null, "role" text check ("role" in ('admin', 'user')) not null default user, "change_password" boolean not null default false, "password_reset_requested" boolean not null default false, "last_logged_in" timestamptz null, constraint "users_pkey" primary key ("id"));`,
     );
     this.addSql(
       `comment on column "users"."deleted_at" is 'Soft delete timestamp';`,

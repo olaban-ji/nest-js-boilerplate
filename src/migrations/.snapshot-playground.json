@@ -189,7 +189,7 @@
           "primary": false,
           "nullable": false,
           "length": 20,
-          "default": "'user'",
+          "default": "user",
           "enumItems": [
             "admin",
             "user"

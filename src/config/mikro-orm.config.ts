@@ -2,7 +2,6 @@ import 'dotenv/config';
 import { defineConfig } from '@mikro-orm/core';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { Migrator } from '@mikro-orm/migrations';
-import { TSMigrationGenerator } from '@mikro-orm/migrations';
 import { SeedManager } from '@mikro-orm/seeder';
 import { PRODUCTION } from '@common/constants';
 import { createWinstonLogger } from './winston.config';
@@ -45,14 +44,6 @@ export default defineConfig({
     path: 'dist/migrations',
     pathTs: 'src/migrations',
     glob: '!(*.d).{js,ts}',
-    transactional: true,
-    disableForeignKeys: true,
-    allOrNothing: true,
-    dropTables: true,
-    safe: false,
-    snapshot: true,
-    emit: 'ts',
-    generator: TSMigrationGenerator,
   },
   seeder: {
     path: 'dist/seeders',
