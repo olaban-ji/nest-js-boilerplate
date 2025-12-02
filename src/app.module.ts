@@ -20,7 +20,6 @@ import { BullModule } from '@nestjs/bullmq';
 import { BullBoardModule } from '@bull-board/nestjs';
 import { ExpressAdapter } from '@bull-board/express';
 import { CreateUserCommand } from './commands/create-user.command';
-import { RequestContextMiddleware } from './common/middlewares/request-context.middleware';
 import mikroOrmConfig from '@config/mikro-orm.config';
 
 @Module({
@@ -76,7 +75,5 @@ export class AppModule implements NestModule {
       .forRoutes({ path: 'queues', method: RequestMethod.ALL });
 
     consumer.apply(MorganMiddleware).forRoutes('*');
-
-    consumer.apply(RequestContextMiddleware).forRoutes('*');
   }
 }
