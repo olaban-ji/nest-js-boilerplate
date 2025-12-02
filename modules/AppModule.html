@@ -303,8 +303,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app.module.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app.module.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -377,7 +377,6 @@ import { BullModule } from &#x27;@nestjs/bullmq&#x27;;
 import { BullBoardModule } from &#x27;@bull-board/nestjs&#x27;;
 import { ExpressAdapter } from &#x27;@bull-board/express&#x27;;
 import { CreateUserCommand } from &#x27;./commands/create-user.command&#x27;;
-import { RequestContextMiddleware } from &#x27;./common/middlewares/request-context.middleware&#x27;;
 import mikroOrmConfig from &#x27;@config/mikro-orm.config&#x27;;
 
 @Module({
@@ -433,8 +432,6 @@ export class AppModule implements NestModule {
       .forRoutes({ path: &#x27;queues&#x27;, method: RequestMethod.ALL });
 
     consumer.apply(MorganMiddleware).forRoutes(&#x27;*&#x27;);
-
-    consumer.apply(RequestContextMiddleware).forRoutes(&#x27;*&#x27;);
   }
 }
 </code></pre>
