@@ -21,6 +21,7 @@ import { BullBoardModule } from '@bull-board/nestjs';
 import { ExpressAdapter } from '@bull-board/express';
 import { CreateUserCommand } from './commands/create-user.command';
 import mikroOrmConfig from '@config/mikro-orm.config';
+import { RequestContextMiddleware } from '@common/middlewares/request-context.middleware';
 
 @Module({
   imports: [
@@ -56,6 +57,8 @@ export class AppModule implements NestModule {
   constructor(private readonly configService: ConfigService) {}
 
   configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RequestContextMiddleware).forRoutes('*');
+
     applyRawBodyOnlyTo(consumer, {
       method: RequestMethod.ALL,
       path: '*path/webhook',
