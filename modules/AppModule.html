@@ -303,8 +303,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app.module.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app.module.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -378,6 +378,7 @@ import { BullBoardModule } from &#x27;@bull-board/nestjs&#x27;;
 import { ExpressAdapter } from &#x27;@bull-board/express&#x27;;
 import { CreateUserCommand } from &#x27;./commands/create-user.command&#x27;;
 import mikroOrmConfig from &#x27;@config/mikro-orm.config&#x27;;
+import { RequestContextMiddleware } from &#x27;@common/middlewares/request-context.middleware&#x27;;
 
 @Module({
   imports: [
@@ -413,6 +414,8 @@ export class AppModule implements NestModule {
   constructor(private readonly configService: ConfigService) {}
 
   configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RequestContextMiddleware).forRoutes(&#x27;*&#x27;);
+
     applyRawBodyOnlyTo(consumer, {
       method: RequestMethod.ALL,
       path: &#x27;*path/webhook&#x27;,
