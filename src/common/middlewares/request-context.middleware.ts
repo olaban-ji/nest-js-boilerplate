@@ -7,6 +7,8 @@ export class RequestContextMiddleware implements NestMiddleware {
   constructor(private readonly orm: MikroORM) {}
 
   use(req: Request, res: Response, next: NextFunction): void {
-    RequestContext.create(this.orm.em, next);
+    RequestContext.create(this.orm.em, () => {
+      next();
+    });
   }
 }
