@@ -414,8 +414,6 @@ export class AppModule implements NestModule {
   constructor(private readonly configService: ConfigService) {}
 
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestContextMiddleware).forRoutes(&#x27;*&#x27;);
-
     applyRawBodyOnlyTo(consumer, {
       method: RequestMethod.ALL,
       path: &#x27;*path/webhook&#x27;,
@@ -433,6 +431,8 @@ export class AppModule implements NestModule {
         }),
       )
       .forRoutes({ path: &#x27;queues&#x27;, method: RequestMethod.ALL });
+
+    consumer.apply(RequestContextMiddleware).forRoutes(&#x27;*&#x27;);
 
     consumer.apply(MorganMiddleware).forRoutes(&#x27;*&#x27;);
   }
